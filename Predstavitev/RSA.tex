@@ -93,7 +93,7 @@
 \end{alertblock}
 \end{frame}
 
-\begin{frame}{Ideja je rojena}
+\begin{frame}{1978, ideja je rojena}
 \begin{figure}
 \centering
 \includegraphics[scale=1.2]{rsa_inventors}
@@ -106,10 +106,10 @@
 \framesubtitle{Modularna aritmetika in kolobar $\Zn$}
 \begin{block}<1->{}
 \begin{matematika}{definicija}
-Modularna aritmetika (včasih tudi urna aritmetika) po modulu $n$ je aritmetika omejena s kongruenčno relacijo $a R_n b \iff n | b - a$ .
+\textbf{Modularna aritmetika} (včasih tudi urna aritmetika) po modulu $n$ je aritmetika omejena s kongruenčno relacijo $a R_n b \iff n | b - a$ .
 \newline
 \newline
-Z drugimi besedami je to aritmetika v kolobarju $\Zn$, tj. je kolobar ostankov pri deljenju celih števil z $n$, kjer je $n$ modul.
+Z drugimi besedami je to aritmetika v kolobarju $\Zn$, tj. je kolobar ostankov pri deljenju celih števil z $n$, kjer je $n$ \textbf{modul}.
 \end{matematika}
 \end{block}
 
@@ -154,9 +154,28 @@ $\varphi(p) = p-1$, če je $p$ praštevilo.
 
 \begin{frame}{Matematične osnove}
 \framesubtitle{Polinomi in številski sistemi}
+\begin{block}<1->{}
+\begin{matematika}{definicija}
+Polinom $f$ je formalna vsota $f(X) = a_0 + a_1X + \cdots + a_nX^n.$ $X$ imenujemo \emph{spremenljivka}, številom $a_i$ pravimo \emph{koeficienti}, $n$ pa je \emph{stopnja} polinoma. Vsak polinom porodi \textbf{polinomsko funkcijo}.
+\end{matematika}
+\end{block}
+
+\begin{block}<2->{}
+\begin{matematika}{definicija}
+Število je zapisano v $n$-iškem \textbf{številskem sistemu}, $n \geq 2$, če je enako vrednosti neke polinomske funkcije iz $\Zn$ izračunane za $X = n$. V tem primeru je $a_i$ števka tega števila na $i$-tem mestu, šteto od desne proti levi od $0$ naprej.
+\end{matematika}
+\end{block}
 \end{frame}
 
 \begin{frame}{Kako deluje?}
+\begin{itemize}[label=\ding{227}]
+\item<1-> Izberemo si dve različni praštevili $p$ in $q$.
+\item<2-> Izračunamo $n = p \cdot q$ in $\phi(n) = \phi(p) \cdot \phi(q) = (p-1) \cdot (q-1).$
+\item<3-> Izberemo naključen $e$, za katerega velja gcd($e, \phi(n)) = 1$.
+\item<4-> Z razširjenim Evklidovim algoritmom poiščemo $d$, ki je multiplikativen inverz za $e$ v kolobarju $\mathbb{Z}_{\phi(n)}$. Drugače: $e \cdot d = 1 \text{ (mod } \phi(n))$.
+\item<5-> Sporočilo $m$ šifriramo tako: $c = m^e \text{ mod } n$.
+\item<6-> Skrito sporočilo dešifriramo tako: $m = c^d \text{ mod } n$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Zakaj deluje?}
