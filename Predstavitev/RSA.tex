@@ -19,16 +19,25 @@
 \usepackage{graphicx}
 \usepackage{color}
 %\usepackage{url}
+\usepackage{enumerate}
 \usepackage{enumitem}
 \usepackage{pifont}
+
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{bostonuniversityred}{rgb}{0.8, 0.0, 0.0}
 
 \newcommand{\Zn}{\mathbb{Z}_n}
 \renewcommand{\P}{\mathbb{P}}
 
+\newenvironment{matematika}[1]{
+\textcolor{bostonuniversityred}{\underline{\textsc{#1:}}}
+}{
+}
+
 \title{Algoritem RSA}
 \subtitle{Uporaba, prednosti in slabosti}
 \author{Benjamin Benčina}
-\institute{Fakulteta za matematiko in fiziko \\ Oddelek za matematiko}
+\institute[FMF UL]{Univerza v Ljubljani \\ Fakulteta za matematiko in fiziko \\ Oddelek za matematiko}
 \date{\today}
 
 \begin{document}
@@ -46,8 +55,9 @@
 \begin{itemize}[label=\ding{227}]
 \item<1-> Tajne pisave, skitala, piktogrami, premetanke...
 \item<2-> Cezarjanka ($x \mapsto x + c$)
-\item<3-> Vigen\`{e}rov kvadrat
+\item<3-> Vigen\`{e}rov kvadrat (urejena $n$-terica preslikav oblike $x \mapsto x + c_i$; kjer je $n$ dolžina ključa in $i \in [n]$)
 \item<4-> Enigma in Alan Turing
+
 \end{itemize}
 \end{frame}
 
@@ -73,17 +83,73 @@
 \end{frame}
 
 \begin{frame}{Motivacija}
+\begin{itemize}[label=\ding{227}]
+\item<1->Ročne šifre so nepraktične, njihova varnost nezanesljiva.
+\item<2->Mehanične šifre so drage s preveč dinamičnim algoritmom.
+\item<3->Obe vrsti tradicionalnega šifriranja sta proti računalniku skoraj vedno neuporabni.
+\end{itemize}
+\begin{alertblock}<4->{}
+\alert{Potreba po univerzalnem, matematično trdnem in varnem algoritmu.}
+\end{alertblock}
 \end{frame}
 
 \begin{frame}{Ideja je rojena}
+\begin{figure}
+\centering
+\includegraphics[scale=1.2]{rsa_inventors}
+\label{fig:inventors}
+\caption{Izumitelji algoritma Ronald \alert{R}ivest (sredina), Adi \alert{S}hamir (levo) in Leonard \alert{A}dleman (desno) po podelitvi patenta, 1983.}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Matematične osnove}
 \framesubtitle{Modularna aritmetika in kolobar $\Zn$}
+\begin{block}<1->{}
+\begin{matematika}{definicija}
+Modularna aritmetika (včasih tudi urna aritmetika) po modulu $n$ je aritmetika omejena s kongruenčno relacijo $a R_n b \iff n | b - a$ .
+\newline
+\newline
+Z drugimi besedami je to aritmetika v kolobarju $\Zn$, tj. je kolobar ostankov pri deljenju celih števil z $n$, kjer je $n$ modul.
+\end{matematika}
+\end{block}
+
+\begin{block}<2->{}
+\begin{matematika}{oznake}
+\newline
+\begin{itemize}[label=\ding{43}]
+\item Operacija $\text{mod: } \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$ $(a, b) \mapsto \text{ostanek števila } a \text{ pri deljenju z } b$
+\item Relacija $a = b \text{ (mod } n)$ pomeni, da celi števili $a$ in $b$ vrneta isti ostanek pri deljenju z $n$, oziroma mod($a$,$n$) = mod($b$,$n$).
+\end{itemize}
+\end{matematika}
+\end{block}
 \end{frame}
+
 
 \begin{frame}{Matematične osnove}
 \framesubtitle{Funkcija $\varphi$ in Eulerjev izrek}
+\begin{block}<1->{}
+\begin{matematika}{definicija}
+Eulerjeva funkcija $\varphi$($n$) vrne število vseh pozitivnih celih števil manjših od $n$, ki so $n$ tuja.
+\newline
+\newline
+$\varphi$($n$) $=$ \#\{ $a \in \mathbb{N}$; $a \leq n$, gcd($a$, $n$)$=1$\}
+\end{matematika}
+\end{block}
+
+\begin{block}<2->{}
+\begin{matematika}{eulerjev izrek}
+Če sta si števili $x$ in $n$ tuji, velja:
+\[
+x^{\varphi(n)} = 1 \text{ (mod }n)
+\]
+\end{matematika}
+\end{block}
+
+\begin{block}<3->{}
+\begin{matematika}{opomba}
+$\varphi(p) = p-1$, če je $p$ praštevilo.
+\end{matematika}
+\end{block}
 \end{frame}
 
 \begin{frame}{Matematične osnove}
