@@ -236,10 +236,30 @@ Pokazati se da, da je zahtevnost drugega in tretjega pristopa enaka zahtevnosti 
 
 \begin{frame}{Napad 3:}
 \framesubtitle{Faktorizacija $n$, če poznamo $d$, oz. napad na skupen modul}
+Pokažimo, da je iskanje $d$ vsaj tako težko kot faktorizacija $n$. Recimo, da $d$ imamo. Naj bo $m = d \cdot e - 1$. Torej velja $a^m = 1 \text{ (mod }n)$.
+\begin{block}<2->{}
+\begin{matematika}{algoritem}
+\begin{itemize}[label=\ding{227}]
+\item<2->  Če je $m$ sod in $a^{m/2} = 1 \text{ (mod }n)$ za več naključnih $a$-jev, nastavimo $m = \frac{m}{2}$. Ponavljamo dokler so pogoji na $m$ zadoščeni.
+\item<3-> Izberemo naključen $a$ in izračunamo $g = \text{gcd}(a^{m/2} -1, n)$.
+\item<4-> Če je $g$ pravi delitelj $n$, smo našli vrednost in zaključimo. Drugače nazaj na drugi korak.
+\end{itemize}
+\end{matematika}
+\end{block}
 \end{frame}
 
 \begin{frame}{Napad 4:}
 \framesubtitle{Chosen-Ciphertext Attack}
+\begin{itemize}[label=\ding{227}]
+\item<1-> Preprost napad, ki temelji na standardni velikosti blokov sporočila.
+\item<2-> Napadalec določi množico možnih sporočil, izbere najbolj verjetne, jih zakodira z javnim ključem in nato primerja šifro (oz. po ang. Ciphertext).
+\item <3->
+Rešitve:
+\begin{itemize}[label=\ding{226}]
+\item<4-> Sporočilo \emph{posolimo}, tj. mu na začetek vsakega bloka dodamo dogovorjeno število naključnih znakov.
+\item<5-> Poskrbimo, da je naša izbira javnega ključa takšna, da je množica možnih sporočil kar se da velika.
+\end{itemize}
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Napad 5:}
