@@ -179,20 +179,59 @@ Polinom $f$ je formalna vsota $f(X) = a_0 + a_1X + \cdots + a_nX^n.$ $X$ imenuje
 \end{frame}
 
 \begin{frame}{Zakaj deluje?}
+\begin{block}<1->{}
+\begin{matematika}{izrek}
+Naj bo $n \in \mathbb{Z}$ produkt samih različnih praštevil in naj bosta $d, e\in \mathbb{N}$ taki, da za $\forall p \in \mathbb{P}$ velja $(p-1) | (d \cdot e - 1)$. Tedaj:
+\newline
+\[
+\forall a \in \mathbb{Z}: \text{ } a^{d \cdot e} = a \text{ (mod }n)
+\]
+\end{matematika}
+\end{block}
 \end{frame}
 
 \begin{frame}{Kodiranje zaporedja znakov v števila}
+\begin{itemize}[label=\ding{227}]
+\item<1-> Izračunamo moč množice znakov, ki bi jih radi kodirali. Naj bo to število $m$.
+\item<2-> Vsakemu znaku iz te množice priredimo vrednost iz množice $\mathbb{Z}_m$.
+\item<3-> Preštejemo število znakov, ki bi jih radi kodirali. Naj bo to število $j$.
+\item<4-> Zaporedje znakov razbijemo v take kose, da je $j$ vsakega kosa strogo manj od $\log_{m}(n)$.
+\item<4-> Nato sestavimo polinom $f(X) = a_0 + a_1 \cdot X + \cdots + a_j \cdot X^j$. 
+\item<5-> Naše iskano število je vrednost polinomske funkcije tega polinoma izračunane za $x = m$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Načrt napada}
+Iz matematičnega vidika se da algoritem napasti na treh točkah:
+\begin{itemize}[label=\ding{227}]
+\item<1-> določimo praštevili $p$ in $q$ modula $n$, nato izračunamo $\phi(n)$ in posledično $d$;
+\item<2-> določimo $\phi(n)$ direktno iz javnega ključa $\{ e, n \}$ in posledično $d$;
+\item<3-> določimo $d$ direktno iz javnega ključa $\{ e, n \}$.
+\end{itemize}
+\begin{block}<4->{}
+Pokazati se da, da je zahtevnost drugega in tretjega pristopa enaka zahtevnosti faktorizacije števila $n$. Torej je varnost algoritma proti matematičnim napadom določena s časom potrebnim za faktorizacijo števila $n$ na $p$ in $q$.
+\end{block}
 \end{frame}
 
 \begin{frame}{Napad 1:}
 \framesubtitle{Faktorizacija $n$, če poznamo $\phi(n)$}
+\begin{itemize}[label=\ding{227}]
+\item<1-> Naj bo $n = p \cdot q$ in $\phi(n)$ znano število.
+\item<2-> Velja $\phi(n) = (p-1) \cdot (q-1) = p \cdot q - (p + q) + 1$, torej poznamo tako $p \cdot q = n$ kot $p + q = n + 1 - \phi(n)$.
+\item<3-> Torej po Vietovih formulah vemo, da velja $x^2 - (p-q) \cdot x + p \cdot q = (x-p) \cdot (x-q).$
+\item<4-> $p$ in $q$ sta očitno ničli te kvadratne funkcije in zato lahko izračunljivi po splošni formuli.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Napad 2:}
 \framesubtitle{Kaj če sta $p$ in $q$ blizu skupaj?}
+\begin{itemize}[label=\ding{227}]
+\item<1-> Denimo, da vemo, da je razlika števil $p$ in $q$ majhna. Potem je $n$ lahko faktorizirati s \emph{Fermatovo faktorizacijsko metodo}.
+\item<2-> Brez izgube splošnosti lahko rečemo, da $p > q$. Potem $n = (\frac{p+q}{2})^2 - (\frac{p-q}{2})^2$.
+\item<3-> Ker sta $p$ in $q$ "blizu", je $s=\frac{p-q}{2}$ majhno število, $t = \frac{p+q}{2}$ pa je le malce večje od $\sqrt{n}$, $t^2 - n = s^2$ pa je popoln kvadrat.
+\item<4-> Za $t$ jemljemo $\lceil \sqrt{n} \rceil + k$, kjer $k \in \{ 0, 1, \dots \}$, dokler $t^2 - n$ ni popoln kvadrat.
+\item<5-> Potem velja: $p = t + s$ in $q = t - s$.
+\end{itemize}
 \end{frame}
 
 \begin{frame}{Napad 3:}
