@@ -246,6 +246,9 @@ Pokažimo, da je iskanje $d$ vsaj tako težko kot faktorizacija $n$. Recimo, da 
 \end{itemize}
 \end{matematika}
 \end{block}
+\begin{block}<5->{}
+\alert{Dve osebi naj zato nikoli ne uporabljata istega $n$.}
+\end{block}
 \end{frame}
 
 \begin{frame}{Napad 4:}
@@ -264,10 +267,29 @@ Rešitve:
 
 \begin{frame}{Napad 5:}
  \framesubtitle{Napad na majhen šifrirni eksponent $e$}
+Mogoče se zdi, da je zaradi računske učinkovitosti pametno izbrati čim manjši $e$.
+\newline
+\begin{block}<2->{}
+\alert{NAPAKA!}
+\end{block}
+\begin{itemize}[label=\ding{227}]
+\item<3-> Če ima tudi sporočilo $m$ majhno vrednost, torej da $m^e < n$, potem tudi $c = m^e$. Torej lahko iz šifre $c$ dobimo izvorno sporočilo zlahka tako: $m = c^{1/e}$.
+\end{itemize}
+\begin{block}<4->{}
+Rešitev: premajhno sporočilo spet lahko \emph{posolimo}, da povečamo $m^e > n$, poleg tega pa je vedno pametno izbrati večji $e$.
+\end{block}
 \end{frame}
 
 \begin{frame}{Napad 6:}
 \framesubtitle{Napad na majhen prostor sporočil}
+\begin{itemize}[label=\ding{227}]
+\item<1-> Če je slika preslikave šifriranja pri izbranem javnem ključu premajhna, lahko napadalec sistem očitno učinkovito napade že s surovo silo (\emph{brute force}), saj lahko preprosto izračuna vse šifrirane nize in jih primerja s prestreženim.
+\item<2-> Na velikost prostora sporočil lahko vpliva veliko parametrov, predvsem izbira praštevil $p$ in $q$, izbira $e$ ter posledično "izbira" $d$.
+\item<3-> Ta napad je zato kombinacija tehnik Chosen-Ciphertext napada, napada na majhen šifrirni eksponent in naslednjega napada.
+\end{itemize}
+\begin{block}<4->{}
+Splošna rešitev je spet naključno \emph{soljenje} sporočila in predvsem pametna izbira ključev.
+\end{block}
 \end{frame}
 
 \begin{frame}{Napad 7:}
