@@ -283,7 +283,7 @@ Rešitev: premajhno sporočilo spet lahko \emph{posolimo}, da povečamo $m^e > n
 \begin{frame}{Napad 6:}
 \framesubtitle{Napad na majhen prostor sporočil}
 \begin{itemize}[label=\ding{227}]
-\item<1-> Če je slika preslikave šifriranja pri izbranem javnem ključu premajhna, lahko napadalec sistem očitno učinkovito napade že s surovo silo (\emph{brute force}), saj lahko preprosto izračuna vse šifrirane nize in jih primerja s prestreženim.
+\item<1-> Če je slika preslikave šifriranja pri izbranem javnem ključu premajhna, lahko napadalec sistem očitno učinkovito napade že s surovo silo (\emph{brute force}), saj lahko preprosto izračuna vse šifrirane nize in jih primerja s prestreženim.   
 \item<2-> Na velikost prostora sporočil lahko vpliva veliko parametrov, predvsem izbira praštevil $p$ in $q$, izbira $e$ ter posledično "izbira" $d$.
 \item<3-> Ta napad je zato kombinacija tehnik Chosen-Ciphertext napada, napada na majhen šifrirni eksponent in naslednjega napada.
 \end{itemize}
@@ -294,18 +294,47 @@ Splošna rešitev je spet naključno \emph{soljenje} sporočila in predvsem pame
 
 \begin{frame}{Napad 7:}
 \framesubtitle{Napad na majhen dešifrirni eksponent $d$}
+Zopet bi se mogoče zdelo smiselno izbrati čim manjši $d$ v imenu računske učinkovitosti.
+\newline
+\begin{block}<2->{}
+\alert{NAPAKA!}
+\end{block}
+\begin{block}<3->{}
+Kriptograf Michael J. Wiener je pokazal, da se da $d$ da učinkovito določiti, če $d < \frac{1}{3} \cdot n^{1/4}$ in če za praštevili $p$ in $q$ velja $q < p < 2 \cdot q$.
+\end{block}
+\begin{block}<4->{}
+Rešitev je očitna: eksponent $e$ moramo pazljivo izbrati tako, da $d > \frac{1}{3} \cdot n^{1/4}$
+\end{block}
 \end{frame}
 
 \begin{frame}{Napad 8:}
 \framesubtitle{Cikličen napad}
+CIkličen napad je idejno najpreprostejši napad na algoritem RSA poleg seveda \emph{brute force} napada:
+\begin{itemize}[label=\ding{227}]
+\item<1-> Šifro z javnim ključem še enkrat šifriramo. Ta korak ponavljamo, dokler ne šifriramo dobljenega števila nazaj v izvorno šifro.
+\item<2-> Ko se to zgodi, pogledamo eno šifriranje nazaj, to število mora biti izvirno sporočilo.
+\end{itemize}
+\begin{block}<3->{}
+Ta napad je ob pravilni izbiri javnega ključa časovno ekvivalenten \emph{brute force} napadu.
+\newline
+Njegova edina dobra lastnost je, da je odporen na \emph{soljenje} sporočila, 
+\end{block}
 \end{frame}
 
 \begin{frame}{Uporaba}
+\begin{itemize}[label=\ding{227}]
+\item<1-> OpenSSH protokol.
+\item<2-> Če obrnemo vlogo prejemnika in pošiljatelja, lahko algoritem RSA nadomešča t.i. kriptografsko \emph{hash funkcijo} pri preverjanju istovetnosti.
+\item<3-> Zaradi visoke računske zahtevnosti je algoritem pogosto prepočasen za pošiljanje podatkov v realnem času, zato pa pogosto igra vlogo anonimizatorja predaje ključa za hitrejše simetrične šifre, namesto recimo \emph{Diffie-Hellmanove izmenjave ključa}.
+\end{itemize}
 \end{frame}
 
-\begin{frame}{Viri}
+\begin{frame}
+\begin{block}{}
+\LARGE
+\centering
+HVALA ZA POZORNOST!
+\end{block}
 \end{frame}
-
-
 
 \end{document}
