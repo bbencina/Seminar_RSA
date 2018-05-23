@@ -181,7 +181,7 @@ Polinom $f$ je formalna vsota $f(X) = a_0 + a_1X + \cdots + a_nX^n.$ $X$ imenuje
 \begin{frame}{Zakaj deluje?}
 \begin{block}<1->{}
 \begin{matematika}{izrek}
-Naj bo $n \in \mathbb{Z}$ produkt samih različnih praštevil in naj bosta $d, e\in \mathbb{N}$ taki, da za $\forall p \in \mathbb{P}$ velja $(p-1) | (d \cdot e - 1)$. Tedaj:
+Naj bo $n \in \mathbb{Z}$ produkt samih različnih praštevil in naj bosta $d, e\in \mathbb{N}$ taki, da za $\forall p \in \mathbb{P}$, kjer $p | n$, velja: $(p-1) | (d \cdot e - 1)$. Tedaj:
 \newline
 \[
 \forall a \in \mathbb{Z}: \text{ } a^{d \cdot e} = a \text{ (mod }n)
@@ -218,7 +218,7 @@ Pokazati se da, da je zahtevnost drugega in tretjega pristopa enaka zahtevnosti 
 \begin{itemize}[label=\ding{227}]
 \item<1-> Naj bo $n = p \cdot q$ in $\phi(n)$ znano število.
 \item<2-> Velja $\phi(n) = (p-1) \cdot (q-1) = p \cdot q - (p + q) + 1$, torej poznamo tako $p \cdot q = n$ kot $p + q = n + 1 - \phi(n)$.
-\item<3-> Torej po Vietovih formulah vemo, da velja $x^2 - (p-q) \cdot x + p \cdot q = (x-p) \cdot (x-q).$
+\item<3-> Torej po Vietovih formulah vemo, da velja $x^2 - (p+q) \cdot x + p \cdot q = (x-p) \cdot (x-q).$
 \item<4-> $p$ in $q$ sta očitno ničli te kvadratne funkcije in zato lahko izračunljivi po splošni formuli.
 \end{itemize}
 \end{frame}
