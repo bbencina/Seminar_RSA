@@ -1,0 +1,124 @@
+\documentclass[a4paper, 12pt]{article} %%%here01
+
+\usepackage[slovene]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{units}
+\usepackage{eurosym}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+\usepackage{graphicx}
+\usepackage{color}
+%\usepackage{url}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{pifont}
+
+\definecolor{airforceblue}{rgb}{0.36, 0.54, 0.66}
+\definecolor{bostonuniversityred}{rgb}{0.8, 0.0, 0.0}
+
+\newcommand{\Zn}{\mathbb{Z}_n}
+\renewcommand{\P}{\mathbb{P}}
+
+\newenvironment{matematika}[1]{
+\textcolor{bostonuniversityred}{\underline{\textsc{#1:}}}
+}{
+}
+
+\setlength{\parindent}{0mm}
+
+\begin{document}
+%naslov
+\begin{titlepage}
+\centering
+\textbf{\Huge{Algoritem RSA}}
+\vfill
+\textbf{\LARGE{Uporaba, prednosti in slabosti}}
+\vfill\vfill
+\textsc{\Large{Benjamin Benčina}}
+\vfill\vfill
+\textsc{\large{Univerza v Ljubljani}}
+
+\textsc{\large{Fakulteta za matematiko in fiziko}}
+
+\textsc{\large{Oddelek za matematiko}}
+\vfill\vfill\vfill
+	
+{\large\today}
+
+\end{titlepage}
+
+%kazalo
+\tableofcontents
+\newpage
+
+%zgodovina
+\section{Kriptografija}
+\subsection{Kaj je kriptografija in kje se uporablja}
+
+Že od samih začetkov kulture človeštva je pripradnike naše vrste zanimal fundamentalen koncept zasebnosti. Kar se je začelo kot želja po osebnem prostoru in lastništvu osnovnih za preživetje potrebnih predmetov, se je kmalu sprevrglo v željo, če ne celo nujo, po anonimnosti. Kakor je povprečen človek rad v središču pozornosti, ima prav tako, če ne še bolj, rad skrivnosti. Nekatere misli imamo radi tajne, bodisi zaradi sramu ali spornosti bodisi ker je to potrebno za učinkovito in neovirano delovanje družbe.
+\newline
+\newline
+Tako so luč dneva uzrli prvi zametki kriptografije, ki jo, kljub mnogim bolj ali manj poljudnim definicijam, lahko preprosto definiramo sledeče:
+\newline
+Kriptografija je umetnost skrivanja podatkov oz. informacij vsem na očeh.
+\newline
+\newline
+Tukaj je ključen del ta, da so podatki skriti vsem na očeh. Seveda lahko podatke vedno fizično skrijemo na bolj ali manj premeten način, vendar tako vedno tvegamo, da jih nekdo najde, to pa ima pogosto lahko strašljive posledice. Ne tvegamo vedno le razkritja manjše osebne skrivnosti, zaradi katere nam je nerodno nekaj dni; vojne so bile dobljene in izgubljene zaradi neprimerne hrambe občutljivih podatkov, kar pomeni, da je lahko ogroženih na tisoče življenj.
+\newline
+\newline
+V nasprotju s tem (pogosto) naivnim pristopom, kriptografski pristop reši problem tako, da preoblikuje podatke same. Tudi če so najdeni, to najditelju nič ne pomaga, saj iz prestreženega navideznega nesmisla podatkov ne more razbrati. Zato so podatki pogosto hranjeni kar javno; zanimivo je, da je internet kljub stremenju k zasebnosti popolnoma javen, le šifriran (oz. s tujko kriptiran) je v veliki meri.
+\newline
+\newline
+Zaradi očitnih prednosti takega prenosa občutljivih informacij, pomembnih sporočil in podatkoh sploh ni presenetljivo, da se je koncept premetenega skrivanja podatkov po svetu hitro razširil. Med njegovimi prvimi uporabniki so bili mnogi dvorci, tajne in varnostne službe ter vojska, seveda pa tudi zločinci in kriminalne mreže. Kmalu je ideja postala tako popularna, da so jo uporabljali tudi otroci v igri, pripadniki intelektualne elite, da jim drugi ne bi kradli idej in zapiskov. Med bolj znanimi primeri je Leonardo Da Vinci, ki v najboljšem primeru pisal zrcalno, kar je mnogim kradljivcem povzročalo preglavice.
+\newline
+\newline
+Človeški radovednosti pa vendar ni meja in mnogi se niso pustili prepričati v neomajno varnost zgodnje kriptografije. Tako so začeli iskati načine, kako bi šifre oz. kode na najbolj učinkovit način "razbili", tj. našli njihov pravi pomen brez \textbf{ključa} - informacije, ki avtorizirani osebi omogoči preprosto razbiranje šifriranih podatkov. Tako se je rodila nova veda, če ne celo znanost, imenovana \textbf{kriptanaliza} - znanost razbiranja kodov brez avtorizacije. Če je kriptografija temeljila predvsem na izvirnosti avtorja šifre, je kriptanaliza po svoji naravi izrazito matematična veda. Nekaterim se je ideja razbijanja šifer, ki so inherentno uganke, zdela nadvse zabavna, ne le pomembna disciplina. Tako so se začeli s kriptografijo in kriptanalizo ukvarjati tudi ugankarji, vplive pa v razvedrilni matematiki vidimo še danes.
+
+Ne smemo zanemariti tudi vpliva kriptografije in predvsem kriptanalize na lingvistiko, razbiranje pomena neznanega jezika v morda neznani pisavi z omejenim številom podatkov je v samem srcu kriptanazize, če zapis jemljemo kot kod.
+
+\subsection{Kriptografija pred računalnikom}
+
+Kriptografska praksa se je tako skozi stoletja razvijala in upodabljala v vseh možnih oblikah. Od tajnih pisav, piktogramov, premišljenih premetank pa do menjave črk ali celo celih besed za druge. Kot bolj zvito premetanko je vredno omeniti \emph{skitalo}, pripomoček špartanskih generalov že pred našim štetjem. Na palico z natanko določenim polmerom so ovili za eno črko širok trak zaporedoma, da se ovoji niso prekrivali. Nato so vzdolž palice napisali sporočilo in odvili trak, kar je na sistematičen način premešalo črke besedila. Le imetnik palice z natanko istim polmerom je lahko ta trak ovil okrog nje in razbral izvorno sporočilo.
+
+Prav tako ne smemo pozabiti na \emph{cezarjanko}, šifro iz rimskih časov izrazito polinomske oblike $(x \mapsto x + c)$, kjer je $c$ zamik abecede. Cezarjanka namreč deluje tako, da celotno abecedo zamaknemo za fiksno število črk, nato pa prvotne črke sporočila prepišemo v novi, zamaknjeni abecedi. Njena izboljšava, t.i. \emph{Vigen\`{e}rov kvadrat}, kjer isto ciklično po črkah počnemo z dogovorjenim številom abeced, vsaka zamaknjena drugače, je bila dolgo časa sprejeta kot neomajno varna (število zamaknjenih abeced kot njihovi zamiki so seveda tajni), čeprav sta obe šifri močno občutljivi na kriptanalitično metodo \emph{frekvenčne analize} (v katero se ne bom poglabljal), kjer pogledamo ponovitve posameznih šifriranih črk in to primerjamo z znanimi frekvencami črk v nešifriranem zapisu, nato pa po smislu uganemo neznane črke. Pri Vigen\`{e}rovem kvadratu je potrebno najprej ugotoviti število abeced, kar doda nivo varnosti.
+
+Zgodovinsko in filmsko bolj pismen človek najbrž pozna \emph{enigmo}, strašljivo učinkovito šifro, ki so jo uporabljali nacisti v času druge svetovne vojne. Tokrat šifer niso pisali na roke, temveč je za njih šifriral stroj, podoben pisalnemu stroju, prav tako imenovan enigma, zato ta sistem spada v kategorijo t.i. mehanskih šifer. Dolgo časa nihče ni vedel kako ga razbiti, ključ so namreč menjali na 24 ur, algoritem je bil skoraj redundantno zapleten, fizične stroje pa so varovali z življenjem in jih raje uničili, kot prepustili v roke Zaveznikom. Pa vendar je matematik \emph{Alan Turing} ugotovil njene pomanjkljivosti in svoj abstrakten koncept, ki ga danes imenujemo Turingov stroj, udejanil v t.i. Turingove bombe, stroje, ki so bili sposobni v nekaj urah razbiti šifriranje enigme, danes pa so znani ne le kot sklop naprav, ki je zmagal vojno, vendar tudi kot prvi električni računalniki na svetu. S tem je Alan Turing postal oče računalništva in postavil izziv:
+
+Je kdo sposoben najti šifro, ki je računalnik ne bo sposoben rešiti?
+
+\subsection{Simetrično in asimetrično šifriranje}
+
+Ni težko opaziti, da vse do sedaj omenjene šifre zahtevajo le en ključ. Podatek, s katerim smo šifrirali podatke je neposredno in predvsem vidno povezan s podatkom, s katerim podatke nazaj dešifriramo. Pri tajnih pisavah je to kar njihov predpis, pri skitali polmer palice, pri cezarjanki zamik abecede itd. Pa vendar temu ni tako. Tako kot kvadratna enačba z dvema enakima ničlama, imajo vsi šifrirni sistemi (s tujko kriptosistemi) dva ključa, le "enaka" sta (lahko tudi samo vidno povezana, npr. pri cezarjanki je drugi ključ zamik abecede za isto število znakov, le v drugo smer). Tema ključema rečemo šifrirni in dešifrirni ključ (ang. encryption/decryption key), njuna funkcija je očitna iz imena.
+\newline
+\newline
+Kriptosistemov, kjer sta šifrirni in dešifrirni ključ enaka oz. vidno povezana, pravimo \textbf{simetrične šifre}. Temu pa seveda ni vedno tako, le zaradi lažjega dojemanja in hitrejšega računanja sta si ključa enaka. Kriptosistemom, kjer šifrirni in dešifrirni ključ \underline{nista} enaka, pravimo \textbf{asimetrične šifre}. Ravno asimetričnost pa je ključna lastnost, ki zagotavlja varnost algoritmu RSA.
+
+\newpage
+%definicija algoritma
+\section{Algoritem RSA}
+
+\subsection{Motivacija}
+
+Z nadaljnim razvojem računalnika so izvirne tradicionalne šifre postale vse manj zanesljive, ročne so bile prepočasne in preprosto jih je bilo razvozlati, mehanične pa so bile izredno drage in njihovi so bili prezapleteni in so pogosto v sebi skrivali človeški element, ki je vedno vir napak. Poleg tega so skoraj vse tradicionalne šifre, ročne ali mehanične, kot so pokazale Turingove bombe, proti računalniku neuporabne. Tako se je pojavila potreba po \emph{univerzalnem} algoritmu na matematično trdnih temeljih, ki bi ga lahko uporabljali računalniki in bi hkrati bil proti njim tudi varen.
+
+\subsection{Ideja je rojena}
+
+Svet ni čakal dolgo. Leta 1978 so matematiki in računalničarji Ronald Rivest, Adi Shamir in Leonard Adleman objavili prvo različico svoje ideje, prvi kompleten asimetričen kriptosistem z \textbf{javnim in zasebnim ključem}. Imenovali so ga kar po začetnicah svojih priimkov - algoritem RSA. Do končne različice so potrebovali še nekaj let in leta 1983 so jim odobrili patent.
+\newline
+\newline
+Če šifrirni algoritem razumemo kot matematično funkcijo, je bil izumiteljem algoritma RSA cilj napisati tako funkcijo, ki je \emph{neobrnljiva} - torej iz šifrirane vrednosti ne moremo na noben smiselen način hitro razbrati originalne vrednosti, razen če smo imetnik posebnih privatnih podatkov, ki nam zagotavljajo, da le mi lahko razberemo šifrirane podatke. Če želimo \emph{mi} prejeti šifrirano sporočilo, na poseben kasneje opisan način tvorimo t.i. javni ključ, ki tukaj igra vlogo ključa za šifriranje. Nato vsem potencialnim pošiljateljem rečemo, naj po algoritmu zakodirajo svoje sporočilo nam in naj nam ga pošljejo. Ker je šifrirna funkcija neobrnljiva, tudi pošiljatelj sam ne more nazaj dešifrirati izvornega sporočila, prav tako pa ga ne more dešifrirati drug nelegitimni prestreznik podatkov. Iz zasebnih podatkov, ki jih ne ve nihče in s katerimi smo tvorili javni ključ sedaj tvorimo zasebni ključ, ki je z javnim sicer povezan, vendar na računsko zelo zapleten način. Z zasebnim ključem lahko sedaj le mi dešifriramo dobljene podatke. Če želimo svoje sporočilo poslati komu drugemu, da prosimo za njegov javni ključ (pod pogojem, da ga še nimamo), nato pa z njim šifriramo sporočilo in ga pošljemo.
+\newline
+\newline
+V naslednjih podrazdelkih si bomo pogledali matematične osnove potrebne za razumevanje algoritma RSA, nato pa algoritem sam.
+
+\subsection{Matematične osnove}
+
+\subsubsection{Modularna aritmetika in kolobar $\Zn$}
+
+
+\end{document}
