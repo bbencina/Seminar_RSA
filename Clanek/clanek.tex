@@ -57,7 +57,7 @@
 \newpage
 
 %zgodovina
-\section{Kriptografija}
+\section{Uvod v kriptografijo}
 \subsection{Kaj je kriptografija in kje se uporablja}
 
 Že od samih začetkov kulture človeštva je pripradnike naše vrste zanimal fundamentalen koncept zasebnosti. Kar se je začelo kot želja po osebnem prostoru in lastništvu osnovnih za preživetje potrebnih predmetov, se je kmalu sprevrglo v željo, če ne celo nujo, po anonimnosti. Kakor je povprečen človek rad v središču pozornosti, ima prav tako, če ne še bolj, rad skrivnosti. Nekatere misli imamo radi tajne, bodisi zaradi sramu ali spornosti bodisi ker je to potrebno za učinkovito in neovirano delovanje družbe.
@@ -111,7 +111,7 @@ Z nadaljnim razvojem računalnika so izvirne tradicionalne šifre postale vse ma
 Svet ni čakal dolgo. Leta 1978 so matematiki in računalničarji Ronald Rivest, Adi Shamir in Leonard Adleman objavili prvo različico svoje ideje, prvi kompleten asimetričen kriptosistem z \textbf{javnim in zasebnim ključem}. Imenovali so ga kar po začetnicah svojih priimkov - algoritem RSA. Do končne različice so potrebovali še nekaj let in leta 1983 so jim odobrili patent.
 \newline
 \newline
-Če šifrirni algoritem razumemo kot matematično funkcijo, je bil izumiteljem algoritma RSA cilj napisati tako funkcijo, ki je \emph{neobrnljiva} - torej iz šifrirane vrednosti ne moremo na noben smiselen način hitro razbrati originalne vrednosti, razen če smo imetnik posebnih privatnih podatkov, ki nam zagotavljajo, da le mi lahko razberemo šifrirane podatke. Če želimo \emph{mi} prejeti šifrirano sporočilo, na poseben kasneje opisan način tvorimo t.i. javni ključ, ki tukaj igra vlogo ključa za šifriranje. Nato vsem potencialnim pošiljateljem rečemo, naj po algoritmu zakodirajo svoje sporočilo nam in naj nam ga pošljejo. Ker je šifrirna funkcija neobrnljiva, tudi pošiljatelj sam ne more nazaj dešifrirati izvornega sporočila, prav tako pa ga ne more dešifrirati drug nelegitimni prestreznik podatkov. Iz zasebnih podatkov, ki jih ne ve nihče in s katerimi smo tvorili javni ključ sedaj tvorimo zasebni ključ, ki je z javnim sicer povezan, vendar na računsko zelo zapleten način. Z zasebnim ključem lahko sedaj le mi dešifriramo dobljene podatke. Če želimo svoje sporočilo poslati komu drugemu, da prosimo za njegov javni ključ (pod pogojem, da ga še nimamo), nato pa z njim šifriramo sporočilo in ga pošljemo.
+Če šifrirni algoritem razumemo kot matematično funkcijo, je bil izumiteljem algoritma RSA cilj napisati tako funkcijo, ki je \emph{neobrnljiva} - torej iz šifrirane vrednosti ne moremo na noben smiselen način hitro razbrati originalne vrednosti, razen če smo imetnik posebnih privatnih podatkov, ki nam zagotavljajo, da le mi lahko razberemo šifrirane podatke. Če želimo \emph{mi} prejeti šifrirano sporočilo, na poseben kasneje opisan način tvorimo t.i. javni ključ, ki tukaj igra vlogo ključa za šifriranje. Nato vsem potencialnim pošiljateljem rečemo, naj po algoritmu zakodirajo svoje sporočilo nam in naj nam ga pošljejo. Ker je šifrirna funkcija neobrnljiva, tudi pošiljatelj sam ne more nazaj dešifrirati izvornega sporočila, prav tako pa ga ne more dešifrirati drug nelegitimni prestreznik podatkov. Iz zasebnih podatkov, ki jih poleg nas ne ve nihče in s katerimi smo tvorili javni ključ sedaj tvorimo zasebni ključ, ki je z javnim sicer povezan, vendar na računsko zelo zapleten način. Z zasebnim ključem lahko sedaj le mi dešifriramo dobljene podatke. Če želimo svoje sporočilo poslati komu drugemu, prosimo za njegov javni ključ (pod pogojem, da ga še nimamo), nato pa z njim šifriramo sporočilo in ga pošljemo.
 \newline
 \newline
 V naslednjih podrazdelkih si bomo pogledali matematične osnove potrebne za razumevanje algoritma RSA, nato pa algoritem sam.
@@ -119,6 +119,110 @@ V naslednjih podrazdelkih si bomo pogledali matematične osnove potrebne za razu
 \subsection{Matematične osnove}
 
 \subsubsection{Modularna aritmetika in kolobar $\Zn$}
+
+\begin{matematika}{Definicija}
+\textbf{Modularna aritmetika} (včesih tudi urna aritmetika) po modulu $n$ je aritmetika omejena s kongruenčno relacijo $a R_n b \iff n | b - a$.
+
+Z drugimi besedami je to aritmetika v kolobarju $\Zn$, tj. kolobar ostankov pri deljenju celih števil z $n$, kjer je $n$ \textbf{modul}.
+\end{matematika}
+\newline
+\newline
+Zaradi lažjega pregleda bom definiral še novo operacijo in novo relacijo na množici celih števil.
+\newline
+\newline
+\begin{matematika}{Oznake}
+\begin{itemize}[label=\ding{43}]
+\item Operacija $mod : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, ki slika $(a, b) \mapsto$ ostanek števila $a$ pri deljenju z $b$,
+\item Relacija $a = b \text{ }(mod  \text{ } n)$ pomeni, da celi števili $a$ in $b$ vrneta isti ostanek pri deljenju z $n$. Drugače: $a \text{ } mod \text{ } n = b \text{ } mod \text{ } n$. 
+\end{itemize}
+\end{matematika}
+
+
+Modularna aritmetika igra v algoritmu ključno vlogo, zagotavlja namreč neobrnljivost šifrirne funkcije. Funkcija, ki v svojem predpisu kot končno operacijo uporablja definirano uperacijo $mod$ oz. modulo, je namreč skoraj agresivno neinjektivna, vsaka slika ima števno neskončno množico praslik.
+\newline
+\newline
+\begin{matematika}{Primer}
+Naj bo $f_5(x) = x \text{ } mod \text{ } 5$. Vprašajmo se, katero vrednost smo vstavili v funkcijo, da smo dobili vrednost $3$?
+\newline
+Odgovor je očitno $3$, pa tudi $8, 13, 18, \dots$. Hiter premislek nam pove, da je množica rešitev očitno enaka kar $f^{-1}(\{ 3 \}) = \{ 5 \cdot k + 3; k \in \mathbb{Z} \}$, ta pa je v očitni bijektivni korespondenci z množico celih števil.
+\end{matematika}
+
+\subsubsection{Funkcija $\varphi$ in Eulerjev izrek}
+
+\begin{matematika}{Definicija}
+Eulerjeva funkcija $\varphi (n)$ vrne število vseh naravnih števil manjših od $n$, ki so $n$ tuja. Torej je $\varphi (n) = | \{ a \in \mathbb{N}; a \leq n, gcd(a, n) = 1 \} |$. \\
+\end{matematika}
+
+Eulerjeva funkcija $\varphi$ nam pomaga formulirati naslednji izrek:
+\newline
+\newline
+\begin{matematika}{Izrek}
+Če sta si števili $x$ in $x$ tuji, velja:
+$x^{\varphi (n)} = 1 \text{ } (mod \text{ } n)$. \\
+\end{matematika}
+
+Izreka samega ne bom dokazal, služil pa bo kot ključno orodje pri dokazovanju trditve, ki nam zagotavlja matematično trdnost algoritma RSA. Obstajajo tudi drugi bolj ali manj konstruktivistični dokazi, vendar se bomo tukaj omejili na malce bolj matematičen pristop.
+\newline
+\newline
+\begin{matematika}{Opomba}
+Vredno je omeniti, da če je $p$ praštevilo, je $\varphi (p) = p - 1$. Če je $n$ produkt samih tujih praštevil, velja tudi, da je $\varphi (n)$ enak produktu vseh $\varphi (p_i)$ za vse $p_i$, ki $n$ delijo.
+\end{matematika}
+
+\subsubsection{Polinomi in številski sistemi}
+
+Čeprav so za algoritem brezpomenski, polinomi še vedno igrajo veliko vlogo pri šifriranju, ne le pri algoritmu RSA, temveč tudi pri drugih kriptosistemih. Pomembna opazka, ki se bo pojavila, ko bomo algoritem podrobneje spoznali, je namreč, da šifrirna funkcija sprejema in vrača števila. Besedilna sporočila je potrebno zato "kodirati", tj. predstaviti z enoznačnim številom. V računalništvu obstaja mnogo vrst kodiranja, npr. ASCII in UTF-8, včasih pa je pametno podatke predstaviti na svoj način. Slednje nam v veliki meri omogočajo polinomi. \\
+
+\begin{matematika}{Definicija}
+Polinom $f$ je formalna vsota $f(X) = a_0 + a_1 X + \cdots a_n X^n$. $X$ imenujemo spremenljivka, številom $a_i$ pravimo koeficienti, $n$ pa je stopnja polinoma. Vsak polinom porodi \textbf{polinomsko funkcijo}. \\
+\end{matematika}
+
+\begin{matematika}{Definicija}
+Število je zapisano v $n$-iškem \textbf{številskem sistemu}, $n \geq 2$, če je enako vrednosti neke polinomske funkcije iz $\Zn$ izračunane za $X = n$ in je $a_i$ števka tega števila na $i$-tem mestu, šteto od desne proti levi od $0$ naprej. \\
+\end{matematika}
+
+Znake lahko sedaj zakodiramo na primer tako:
+\begin{itemize}[label=\ding{227}]
+\item izračunamo moč množice znakov (abeceda), ki bi jih radi kodirali, to število naj bo $m$,
+\item vsakemu znaku iz te množice priredimo enolično vrednost iz množice $\mathbb{Z_m}$,
+\item preštejemo število znakov, ki bi jih radi zakodirali (besedilo), naj bo to število $j$,
+\item sestavimo polinom $f(X) = a_0 + a_1 X + \cdots + a_j X^j$,
+\item naše iskano število je vrednost polinomske funkcije tega polinoma izračunane za $x=m$.
+\end{itemize}
+\begin{matematika}{Primer}
+Premislimo lahko, kako sploh pojmujemo naš standardni desetiški zapis. Oglejmo si na primer število $1327$. Načeloma je $1327 = 1 \cdot 10^3 + 3 \cdot 10^2 + 2 \cdot 10 + 7$. Po obratnem postopku sedaj namesto $10$ pišemo $X$ in vidimo, da je število v desetiškem zapisu le polinom s koeficienti iz $\mathbb{Z}_{10}$, torej med $0$ in $9$, izračunan v $x = 10$. \\
+Če bi na primer delali s slovensko abecedo, bi za $m$ izbrali $25$ in na očitno enoličen način tvorili polinomsko funkcijo, kjer bi A priredili vrednost $0$, B vrednost $1$ itd., te vrednosti pa pisali kot koeficiente na ustrezno mesto glede na besedilo, ki bi ga kodirali. \\
+\end{matematika}
+
+\subsection{Algoritem}
+
+\subsubsection{Kako deluje}
+Kljub visoki kompleksnosti in, kot bomo videli, visoki ravni varnosti, je vsaj idejno algoritem sila preprost. Kot tvorec ključev sledimo naslednjemu postopku:
+\begin{itemize}[label=\ding{227}]
+\item izberemo si dve \emph{različni praštevili} $p$ in $q$, to bosta naša privatna podatka, zato jih skrbno hranimo,
+\item izračunamo $n=p \cdot q$ in $\varphi (n) = \varphi (p) \cdot \varphi (q) = (p-1) \cdot (q-1),$
+\item izberemo naključen $e$, za katerega velja $gcd(e, \varphi (n)) = 1$,
+\item \textbf{javni ključ nam tvori par $(e, n)$},
+\item z razširjenim Evklidovim algoritmom lahko sedaj relativno hitro kot edini imetniki $\varphi (n)$ izračunamo $d$, ki je multiplikativen inverz za $e$ v kolobarju $\mathbb{Z}_{\varphi (n)}$, drugače: $e \cdot d = 1 \text{ } (mod \text{ } \varphi (n))$,
+\item \textbf{zasebni ključ nam tvori par $(d, n)$}.
+\item Sporočilo $m$ sedaj šifriramo tako: $c = m^e \text{ } mod \text{ } n$.
+\item Skrito sporočilo dešifriramo tako: $m = c^d \text{ } mod \text{ } n$.
+\end{itemize}
+
+\subsubsection{Zakaj deluje}
+
+Ko smo po tem ne preveč zapletenem postopku zašifrirali sporočilo, se je potrebno vprašati, ali podan obraten postopek res vrne nazaj izvorno sporočilo, z drugimi besedami, je to kljub neobrnljivosti skriti inverz šifrirne funkcije? \\
+Glede na masovno uporabo algoritma, je odgovor očitno pritrdilen, to pa nam zagotavlja naslednji izrek. \\
+
+\begin{matematika}{Izrek}
+Naj bo $n \in \mathbb{Z}$ produkt samih različnih praštevil in naj bosta $d, e \in \mathbb{N}$ taki, da za $\forall p \in \mathbb{P}$, kjer $p|n$, velja: $(p-1)|(d \cdot e - 1)$. Tedaj:
+\[
+\forall a \in \mathbb{Z}: \text{ } a^{d \cdot e} = a \text{ } (mod \text{ } n).
+\]
+\end{matematika}
+
+\begin{matematika}{Dokaz}
+
+\end{matematika}
 
 
 \end{document}
