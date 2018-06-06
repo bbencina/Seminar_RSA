@@ -221,8 +221,166 @@ Naj bo $n \in \mathbb{Z}$ produkt samih različnih praštevil in naj bosta $d, e
 \end{matematika}
 
 \begin{matematika}{Dokaz}
-
+Ker $n | a^{de} - a$ natanko tedaj, ko $p | a^{de} - a$ za vsak praštevilski delitelj $p$ števila $n$, je dovolj pokazati, da za vsak tak $p$ velja $a^{de} = a \text{ } (mod \text{ } p)$. Ločimo dve možnosti: \\
+Če $gcd(a, p) \neq 1$, potem je $a = 0 \text{ } (mod \text{ } p)$ očitno, saj je zaradi praštevilskosti $p$ $a = kp$ za neko celo število $k$. Trivialno sledi, da je tudi $a^{de} = a \text{ } (mod \text{ } p)$, saj sta obe strani enaki $0$. \\
+Če pa $gcd(a, p) = 1$, po Evklidovem izreku sledi, da je $a^{\varphi (p)} = a^{p-1} = 1 \text{ } (mod \text{ } p)$. Ker po predpostavki $(p-1)|(de-1)$, velja tudi $a^{de-1} = 1 \text{ } (mod \text{ } p)$. Če pomnožimo še obe strani enakosti z $a$, dobimo željeni rezultat. \\ \hspace*{\fill} $\square$ \\
 \end{matematika}
 
+Oznake v izreku so sugestivne, predstavljajo namreč istoimenske oznake v opisu postopka algoritma. Ker izrek velja za vsako celo število $a$, velja tudi za naše sporočilo $m$ (potrebno je sicer paziti, da je $m < n$, vendar to zaradi običajne velikosti števila $n$ ni problem). \\
+Naše sporočilo $m$ je šifrirano tako: $c = m^e \text{ } mod \text{ } n$. Ali z obratnim postopkom res dobimo prvotno sporočilo? \\
+$c^d \text{ } mod \text{ } n = (m^{e})^{d} \text{ } mod \text{ } n$, to pa je po izreku enako $m \text{ } mod \text{ } n$. Če smo pazili, da je $m < n$, je $m$ res enolično določen in zato izvorno nešifrirano sporočilo.
+\newline
+\newline
+Sedaj, ko vemo, da algoritem deluje, bi radi preizkusili njegovo varnost. Najbolj učinkovito je, da se postavimo v čevlje napadalca, bodisi neavtoriziranega prestreznika sporočila bodisi prisluškovalca pri prejemniku sporočila, ter se vprašamo o slabostih in šibkih točkah RSA kriptosistema. Te šibke točke bomo poskusili kar se da izkoristiti, nato pa je naš cilj algoritem popraviti, če se le da.
+
+\newpage
+
+\section{Napadi na RSA kriptosistem}
+
+\subsection{Načrt napada}
+
+Če si podrobneje pogledamo algoritem, v njem vidimo tri možne točke napada, te so se pojavijo vsakič, ko je potrebno nekaj izračunati (v našem primeru so to $n, \varphi (n), d$). Obstajajo torej 3 bolj ali manj očitne taktike:
+\begin{itemize}[label=\ding{227}]
+\item s faktorizacijo določimo praštevili $p$ in $q$ modula $n$, nato pa sami izračunamo $\varphi (n)$ in posledično $d$,
+\item določimo $\varphi (n)$ direktno iz javnega ključa $(e, n)$ in posledično izračunamo $d$,
+\item določimo $d$ direktno iz javnega ključa $(e, n)$. \\
+\end{itemize}
+
+Najbolj očiten deluje prvi pristop in pokazati se da, da je zahtevnost drugega in tretjega pristopa enaka zahtevnosti faktorizacije števila $n$. Torej je varnost algoritma proti matematičnim napadom določena s časom potrebnim za faktorizacijo števila $n$ na $p$ in $q$, kar pa je računsko zelo zahteven problem.
+\newline
+\newline
+Vendar pa v napadalnem računalništvu velja pravilo, da je sistem le tako trden, kot je ga je trdnega naredil tisti, ki ga je postavil, ljudje pa delamo napake. Tako lahko ob naši nepazljivosti pri izbiri ključev ali hranjenju skrivnih podatkov vešč napadalec uspešno vdre v naš kriptosistem. V nadaljevanju bo sledilo $8$ takih napadov.
+
+\subsection{Nekaj možnih napadov in njihova izvedba}
+
+\subsubsection{Faktorizacija $n$, če poznamo $\varphi (n)$}
+
+Recimo, da nam je kot napadalcu znano postalo število $\varphi (n)$. To se sicer zgodi le redko, pa vendar je možno, da je hranitelj tajnih podatkov, torej prejemnik sporočil, podatke hranil slabo. Čeprav bi lahko direktno izračunali $d$, si želimo vseeno faktorizirati $n$ na $p$ in $q$, da bomo res vedeli vse o kriptosistemu. Kot bomo videli, nam imetje podatka $\varphi (n)$ faktorizacijo $n$ trivializira.
+\newline
+\newline
+Sedaj imamo za dve neznanki $p$ in $q$ namreč dve enačbi: 
+\begin{equation}
+\label{eq:n}
+n = p \cdot q
+\end{equation}
+\begin{equation}
+\label{eq:phin}
+\varphi (n) = (p-1) \cdot (q-1)
+\end{equation}
+
+Po (\ref{eq:phin}) velja $\varphi (n) = pq - (p+q) + 1$. Torej poznamo tako $p q = n$ kot $p + q = n + 1 - \varphi (n)$. \\
+Po Vietovih formulah pa sedaj vemo, da sta $p$ in $q$ rešitvi kvadratne enačbe
+\begin{equation}
+\label{eq:square}
+x^2 - (p+q) x + p q = (x - p) (x - q) = 0
+\end{equation}
+in kot taki izračunljivi po splošni formuli za rešitve kvadratne enačbe.
+\newline
+\newline
+\begin{matematika}{Rešitev}
+Moralo bi biti očitno, vendar matematično manj pismenim pogosto ni, da varna hramba le $p$ in $q$ ni dovolj. Vse informacije, ki niso javne narave, so praviloma zasebne narave. Zato nikoli ne delimo o našem kriptosistemu ničesar z izjemo javnega ključa.
+\end{matematika}
+
+\subsubsection{Napad na majhno razliko števil $p$ in $q$}
+
+Iskanje praštevil je za računalnik precej naporno in morda se zdi milostna ideja, da vzamemo za $p$ in $q$ kar zaporedni praštevili, morda celo praštevilski dvojček. Ker pa varnost RSA kriptosistema sloni predvsem na težavni faktorizaciji števila $n$, to seveda nikoli ni dobra ideja. Poglejmo si zakaj.
+\newline
+\newline
+Denimo, da vemo (oz. se nam dozdeva), da je razlika števil $p$ in $q$ majhna. Potem lahko poskusimo $n$ faktorizirati s \emph{Fermatovo faktorizacijsko metodo}. Brez izgube splošnosti lahko rečemo, da $p > q$ (v nasprotnem primeru je postopek popolnoma simetričen na $p$ in $q$). Potem velja:
+\begin{equation}
+\label{eq:ffm}
+n = (\frac{p+q}{2})^2 - (\frac{p-q}{2})^2.
+\end{equation}
+Ker je razlika $p$ in $q$ majhna je $s := \frac{p-q}{2}$ majhno število, $t := \frac{p+q}{2}$ pa je le malo večji od $\sqrt{n}$. Velja:
+\begin{equation}
+\label{eq:st}
+t^2 - n = s^2.
+\end{equation}
+
+Za $t$ preprosto jemljemo vrednosti $\lceil \sqrt{n} \rceil + k$, kjer $k$ teče po zaporednih nenegativnih celih številih, in jih vstavljamo v enačbo (\ref{eq:st}). Ko dobimo na desni strani popolni kvadrat, smo zadostili enačbi in tako našli pravi števili $s$ in $t$.
+\newline
+\newline
+Sedaj preprosto sledi $p = t + s$ in $q = t - s$.
+
+\subsubsection{Faktorizacija $n$, če poznamo $d$, oz. napad na skupen modul}
+
+Recimo, da smo nekako izvedeli, kaj je zasebni ključ $d$ naše tarče. Radi faktorizirali $n$ na praštevili $p$ in $q$. Pojavi se seveda vprašanje, zakaj bi to naredili? Odgovor je preprost: izkaže se, da si skupina ljudi včasih deli skupen modul $n$, uporabljajo le različen $e$. Če poznamo $d$ enega od pripadnikov te skupine in znamo z uporabo tega podatka učinkovito faktorizirati $n$, smo vdrli v kriptosistem celotne mreže ljudi, ki si deli modul $n$.
+\newline
+\newline
+Znan je probabilističen algoritem, tj. algoritem z visoko verjetnostjo uspeha, ki nam netrivialno razstavi $n$.
+
+\begin{matematika}{Algoritem}
+Recimo, da je $d$ znan podatek, $(e, n)$ pa je javni ključ za ta $d$. Definiramo $m := de -1$. Torej velja $a^m = 1 \text{ } (mod \text{ } n)$.
+\begin{itemize}[label=\ding{227}]
+\item Če je $m$ sod in $a^{m/2} = 1 \text{ } (mod \text{ } n)$ za več naključnih $a$-jev, nastavimo $m = \frac{m}{2}$. Korak ponavljamo dokler so pogoji na $m$ zadoščeni.
+\item Izberemo naključen $a$ in izračunamo $g = gcd(a^{m/2} - 1, n)$.
+\item Če je $g$ pravi delitelj $n$, smo našli enega izmed faktorjev in s tem oba, postopek zaključimo. V nasprotnem primeru se vrnemo nazaj na prejšnji korak. \\
+\end{itemize}
+\end{matematika}
+
+Algoritma ne bom dokazal, saj se ta napad v praksi najmanj uporablja, saj velja dogovor: \\
+\begin{matematika}{Rešitev}
+Dve osebi naj \underline{nikoli} ne uporabljata istega modula $n$. Praštevil je neskončno mnogo, zato za neupoštevanje tega dogovora ni izgovora.
+\end{matematika}
+
+\subsubsection{Chosen-ciphertext napad}
+
+To je preprost napad, ki temelji na standardni velikosti \textbf{blokov} sporočila. Algoritem RSA je namreč t.i. \emph{bločna šifra}, kar pomeni, da je sporočilo razdeljeno v bloke navadno standardne velikosti. To sledi iz pogoja, da mora biti za enoličnost dešifrirne funkcije sporočilo $m < n$. Ker temu seveda pri arbitrarnem sporočilu ni tako, sporočilo preprosto razbijemo v take kose, da je številčna vrednost $m$ vsakega kosa manjša od $n$. \\
+Problem se pojavi, ko napadalec iz velikosti blokov lahko sklepa o našem izvornem sporočilu (npr. napadalec ve, da od določeni uri pošljemo vremensko napoved). Tako lahko določi najbolj verjetna sporočila in jih šifrira še sam, nato pa primerja s prestreženimi bloki. Če se šifri ujemata, je našel izvorno sporočilo in iz tega lahko sklepa o preostanku sporočila in tako določi najbolj verjetna sporočila za preostale, še neznane bloke.
+\newline
+\newline
+\begin{matematika}{Rešitev}
+Najbolj učinkovita metoda, ki je dandanes kar standard bločnih šifer, je t.i. \emph{soljenje} sporočila. Začetek vsakega bloka posolimo tako, da mu dodamo dogovorjeno število naključnih znakov. To zagotavlja, da se isto sporočilo nikoli ne šifirira večkrat v isti kod (po ang. \emph{ciphertext}). Vsekakor pa je vedno potrebno paziti, da je naša izbira javnega ključa takšna, da je množica možnih sporočil kar se da velika.
+\end{matematika}
+
+\subsubsection{Napad na majhen šifrirni eksponent $e$}
+
+Spet se morda zdi, da je zaradi računske učinkovitosti pametno izbrati čim manjši $e$. Spet je to huda napaka, močno lahko namreč škodi neobrnljivosti šifrirne funkcije.
+\newline
+\newline
+Zamislimo si, da ima sporočilo $m$ glede na $n$ relativno majhno vrednost. Če je eksponent $e$ dovolj majhen, se lahko pripeti, da je $m^e < n$. Potem je tudi $c = m^e$, saj modulo $n$ v šifrirni funkciji vrednosti ne spremeni. Torej lahko iz šifre $c$ preprosto dobimo izvorno sporočilo, če se v mislih prestavimo v realna števila in izračunamo $m = c^{1/e}$. \\
+
+\begin{matematika}{Rešitev}
+Premajho sporočilo $m$ na začetku spet posolimo, da mu z dodanimi znaki povečamo vrednost, da velja $m^e > n$. Poleg tega je v splošnem pametneje izbrati malo večji $e$.
+\end{matematika}
+
+\subsubsection{Napad na majhen dešifrirni eksponent $d$}
+
+Zopet bi se mogoče v imenu računske učinkovitosti zdelo smiselno izbrati take $e$, $p$ in $q$, da bo $d$ čim manjši. Podobno kot v prejšnjem primeru je to huda napaka. Kriptograf Michael J. Wiener je namreč pokazal, da se da $d$ učinkovito določiti, če velja $d < \frac{1}{3} \cdot n^{1/4}$ in če za praštevili $p$ in $q$ velja $q < p < 2q$ (analogno za $q > p$), kar pa ni tako redko, saj praštevila pogosto izbiramo iz določenega spektra, ki pa je še vedno dovolj velik, da števili $p$ in $q$ nista preveč skupaj. \\
+
+\begin{matematika}{Rešitev}
+Tukaj se rešitev zdi očitna: pazljivo moramo izbrati ne premajhen $e$, da bo $d > \frac{1}{3} \cdot n^{1/4}$.
+\end{matematika}
+
+\subsubsection{Napad na majhen prostor sporočil}
+
+Če je slika šifrirne funkcije pri izbranem javnem ključu premajhna, lahko napadalec kriptosistem očitno učinkovito napade že s surovo silo (\emph{brute force}), saj lahko preprosto izračuna vse možne šifrirane nize in jih primerja s prestreženimi. Na velikost prostora sporočil vpliva veliko parametrov, predvsem velikost praštevil $p$ in $q$, izbira $e$ in posledično izbira $d$. Potemtakem je očitno, da je ta napad preprosta kombinacija tehnik chosen-ciphertext napada, napada na majhen šifrirni eksponent in napada na majhen dešifrirni eksponent. \\
+
+\begin{matematika}{Rešitev}
+Splošna rešitev je zopet naključno soljenje sporočila, predvsem pa pametna izbira ključa. Že zaradi problema faktorizacije števila $n$ na prafaktorja $p$ in $q$, morata biti praštevili zelo veliki - priporočen velikostni red je najmanj $2^{4096}$, večje organizacije pa uporabljajo tudi mnogo večja praštevila.
+\end{matematika}
+
+\subsubsection{Cikličen napad}
+
+Zadnji napad je poleg napada s surovo silo (pregled vseh možnosti) konceptualno najpreprostejši, pa vendar še najbolj zvit. Sledi preprostemu algoritmu:
+
+\begin{matematika}{Algoritem}
+Naj bo $c$ prestreženo šifrirano sporočilo.
+\begin{itemize}[label=\ding{227}]
+\item $c$ še enkrat šifriramo in dobimo novo šifro $c_0$. Korak ponavljamo na $c_0$, dokler ne velja $c_0 = c$, kjer je $c$ prvotno prestreženo sporočilo.
+\item Ko je $c_0 = c$, preprosto pogledamo korak nazaj, katero sporočilo smo šifrirali, da smo dobili nazaj $c$. To sporočilo zaradi enoličnosti algoritma mora biti izvorno sporočilo. \\
+\end{itemize}
+\end{matematika}
+
+Vredno je omeniti, da je ob pravilni izbiri ključev ta napad časovno ekvivalenten napadu s surovo silo. Njegova edina prednost je, da je popolnoma odporen na soljenje sporočila, saj je algoritem popolnoma neodvisen od ključev in sporočila samega, od tega je odvisno le njegovo trajanje.
+
+\newpage
+\section{Zaključek}
+
+Kot smo videli, obstajajo mnogi bolj ali manj zapleteni napadi na RSA kriptosistem, vsakega pa se da relativno enostavno preprečiti, če le malo pazimo pri izbiri ključev in sporočilu dodamo mero naključnosti. Algoritem RSA je zato zelo varen in širom uporabljen še danes. Uporablja ga recimo popularen protokol za varen prenos podatkov čez omrežje OpenSSH, s katerim se povprečen uporabnik interneta nezavedno sreča skoraj dnevno, matematiki in programerji pa ga poznamo predvsem zato, ker ga uporablja platforma za nadzor različic GitHub.\\
+Pogosto se uporablja tudi za overjanje istovetnosti oz. avtentikacijo. Če vemo, da določen javni ključ pripada neki osebi, lahko ta oseba izkaže svojo istovetnost tako, da nam s preprosto izmenjavo sporočila dokaže, da si lasti pripadajoči zasebni ključ.
+\newline
+\newline
+Algoritem RSA ima seveda ključno pomanjkljivost - računsko je zelo počasen. Zato ponavadi ni primeren za izmenjavo velike količine podatkov v realnem času. Uporablja se predvsem za varno izmenjavo ključa neke hitrejše simetrične šifre, preko katere potem poteka nadaljna izmenjava podatkov. Kljub temu je nepogrešljiv in izredno varen del kriptografije, ki je kljub svoji starosti preživel zob časa.
 
 \end{document}
