@@ -13,7 +13,8 @@
 \usepackage{mathtools}
 \usepackage{graphicx}
 \usepackage{color}
-%\usepackage{url}
+\usepackage{url}
+\usepackage{hyperref}
 \usepackage{enumerate}
 \usepackage{enumitem}
 \usepackage{pifont}
@@ -74,10 +75,10 @@ Tukaj je ključen del ta, da so podatki skriti vsem na očeh. Seveda lahko podat
 V nasprotju s tem (pogosto) naivnim pristopom, kriptografski pristop reši problem tako, da preoblikuje podatke same. Tudi če so najdeni, to najditelju nič ne pomaga, saj iz prestreženega navideznega nesmisla podatkov ne more razbrati. Zato so podatki pogosto hranjeni kar javno; zanimivo je, da je internet kljub stremenju k zasebnosti popolnoma javen, le šifriran (oz. s tujko kriptiran) je v veliki meri.
 \newline
 \newline
-Zaradi očitnih prednosti takega prenosa občutljivih informacij, pomembnih sporočil in podatkoh sploh ni presenetljivo, da se je koncept premetenega skrivanja podatkov po svetu hitro razširil. Med njegovimi prvimi uporabniki so bili mnogi dvorci, tajne in varnostne službe ter vojska, seveda pa tudi zločinci in kriminalne mreže. Kmalu je ideja postala tako popularna, da so jo uporabljali tudi otroci v igri, pripadniki intelektualne elite, da jim drugi ne bi kradli idej in zapiskov. Med bolj znanimi primeri je Leonardo Da Vinci, ki v najboljšem primeru pisal zrcalno, kar je mnogim kradljivcem povzročalo preglavice.
+Zaradi očitnih prednosti takega prenosa občutljivih informacij, pomembnih sporočil in podatkoh sploh ni presenetljivo, da se je koncept premetenega skrivanja podatkov po svetu hitro razširil. Med njegovimi prvimi uporabniki so bili mnogi dvorci, tajne in varnostne službe ter vojska, seveda pa tudi zločinci in kriminalne mreže. Kmalu je ideja postala tako popularna, da so jo uporabljali tudi otroci v igri, pripadniki intelektualne elite, da jim drugi ne bi kradli idej in zapiskov. Med bolj znanimi primeri je Leonardo da Vinci, ki je v najboljšem primeru pisal zrcalno, kar je mnogim kradljivcem povzročalo preglavice.
 \newline
 \newline
-Človeški radovednosti pa vendar ni meja in mnogi se niso pustili prepričati v neomajno varnost zgodnje kriptografije. Tako so začeli iskati načine, kako bi šifre oz. kode na najbolj učinkovit način "razbili", tj. našli njihov pravi pomen brez \textbf{ključa} - informacije, ki avtorizirani osebi omogoči preprosto razbiranje šifriranih podatkov. Tako se je rodila nova veda, če ne celo znanost, imenovana \textbf{kriptanaliza} - znanost razbiranja kodov brez avtorizacije. Če je kriptografija temeljila predvsem na izvirnosti avtorja šifre, je kriptanaliza po svoji naravi izrazito matematična veda. Nekaterim se je ideja razbijanja šifer, ki so inherentno uganke, zdela nadvse zabavna, ne le pomembna disciplina. Tako so se začeli s kriptografijo in kriptanalizo ukvarjati tudi ugankarji, vplive pa v razvedrilni matematiki vidimo še danes.
+Človeški radovednosti pa vendar ni meja in mnogi se niso pustili prepričati v neomajno varnost zgodnje kriptografije. Tako so začeli iskati načine, kako bi šifre oz. kode na najbolj učinkovit način razbili, tj. našli njihov pravi pomen brez \textbf{ključa} - informacije, ki avtorizirani osebi omogoči preprosto razbiranje šifriranih podatkov. Tako se je rodila nova veda, če ne celo znanost, imenovana \textbf{kriptanaliza} - znanost razbiranja kodov brez avtorizacije. Če je kriptografija temeljila predvsem na izvirnosti avtorja šifre, je kriptanaliza po svoji naravi izrazito matematična veda. Nekaterim se je ideja razbijanja šifer, ki so inherentno uganke, zdela nadvse zabavna, ne le pomembna disciplina. Tako so se začeli s kriptografijo in kriptanalizo ukvarjati tudi ugankarji, vplive pa v razvedrilni matematiki vidimo še danes.
 
 Ne smemo zanemariti tudi vpliva kriptografije in predvsem kriptanalize na lingvistiko, razbiranje pomena neznanega jezika v morda neznani pisavi z omejenim številom podatkov je v samem srcu kriptanazize, če zapis jemljemo kot kod.
 
@@ -87,16 +88,16 @@ Kriptografska praksa se je tako skozi stoletja razvijala in upodabljala v vseh m
 
 Prav tako ne smemo pozabiti na \emph{cezarjanko}, šifro iz rimskih časov izrazito polinomske oblike $(x \mapsto x + c)$, kjer je $c$ zamik abecede. Cezarjanka namreč deluje tako, da celotno abecedo zamaknemo za fiksno število črk, nato pa prvotne črke sporočila prepišemo v novi, zamaknjeni abecedi. Njena izboljšava, t.i. \emph{Vigen\`{e}rov kvadrat}, kjer isto ciklično po črkah počnemo z dogovorjenim številom abeced, vsaka zamaknjena drugače, je bila dolgo časa sprejeta kot neomajno varna (število zamaknjenih abeced kot njihovi zamiki so seveda tajni), čeprav sta obe šifri močno občutljivi na kriptanalitično metodo \emph{frekvenčne analize} (v katero se ne bom poglabljal), kjer pogledamo ponovitve posameznih šifriranih črk in to primerjamo z znanimi frekvencami črk v nešifriranem zapisu, nato pa po smislu uganemo neznane črke. Pri Vigen\`{e}rovem kvadratu je potrebno najprej ugotoviti število abeced, kar doda nivo varnosti.
 
-Zgodovinsko in filmsko bolj pismen človek najbrž pozna \emph{enigmo}, strašljivo učinkovito šifro, ki so jo uporabljali nacisti v času druge svetovne vojne. Tokrat šifer niso pisali na roke, temveč je za njih šifriral stroj, podoben pisalnemu stroju, prav tako imenovan enigma, zato ta sistem spada v kategorijo t.i. mehanskih šifer. Dolgo časa nihče ni vedel kako ga razbiti, ključ so namreč menjali na 24 ur, algoritem je bil skoraj redundantno zapleten, fizične stroje pa so varovali z življenjem in jih raje uničili, kot prepustili v roke Zaveznikom. Pa vendar je matematik \emph{Alan Turing} ugotovil njene pomanjkljivosti in svoj abstrakten koncept, ki ga danes imenujemo Turingov stroj, udejanil v t.i. Turingove bombe, stroje, ki so bili sposobni v nekaj urah razbiti šifriranje enigme, danes pa so znani ne le kot sklop naprav, ki je zmagal vojno, vendar tudi kot prvi električni računalniki na svetu. S tem je Alan Turing postal oče računalništva in postavil izziv:
+Zgodovinsko in filmsko bolj pismen človek najbrž pozna \emph{enigmo}, strašljivo učinkovito šifro, ki so jo uporabljali nacisti v času druge svetovne vojne. Tokrat šifer niso pisali na roke, temveč je za njih šifriral stroj, podoben pisalnemu stroju, prav tako imenovan enigma, zato ta sistem spada v kategorijo t.i. mehanskih šifer. Dolgo časa nihče ni vedel, kako ga razbiti, ključ so namreč menjali na 24 ur, algoritem je bil skoraj redundantno zapleten, fizične stroje pa so varovali z življenjem in jih raje uničili, kot prepustili v roke Zaveznikom. Pa vendar je matematik \emph{Alan Turing} ugotovil njene pomanjkljivosti in svoj abstrakten koncept, ki ga danes imenujemo Turingov stroj, udejanil v t.i. Turingove bombe, stroje, ki so bili sposobni v nekaj urah razbiti šifriranje enigme, danes pa so znani ne le kot sklop naprav, ki je zmagal vojno, vendar tudi kot prvi električni računalniki na svetu. S tem je Alan Turing postal oče računalništva in nezavedno postavil izziv:
 
 Je kdo sposoben najti šifro, ki je računalnik ne bo sposoben rešiti?
 
 \subsection{Simetrično in asimetrično šifriranje}
 
-Ni težko opaziti, da vse do sedaj omenjene šifre zahtevajo le en ključ. Podatek, s katerim smo šifrirali podatke je neposredno in predvsem vidno povezan s podatkom, s katerim podatke nazaj dešifriramo. Pri tajnih pisavah je to kar njihov predpis, pri skitali polmer palice, pri cezarjanki zamik abecede itd. Pa vendar temu ni tako. Tako kot kvadratna enačba z dvema enakima ničlama, imajo vsi šifrirni sistemi (s tujko kriptosistemi) dva ključa, le "enaka" sta (lahko tudi samo vidno povezana, npr. pri cezarjanki je drugi ključ zamik abecede za isto število znakov, le v drugo smer). Tema ključema rečemo šifrirni in dešifrirni ključ (ang. encryption/decryption key), njuna funkcija je očitna iz imena.
+Ni težko opaziti, da vse do sedaj omenjene šifre zahtevajo le en ključ. Podatek, s katerim smo šifrirali podatke je neposredno in predvsem vidno povezan s podatkom, s katerim podatke nazaj dešifriramo. Pri tajnih pisavah je to kar njihov predpis, pri skitali polmer palice, pri cezarjanki zamik abecede itd. Pa vendar temu ni vedno tako. Tako kot kvadratna enačba z dvema enakima ničlama, imajo vsi šifrirni sistemi (s tujko kriptosistemi) dva ključa, le enaka sta (lahko tudi samo vidno povezana, npr. pri cezarjanki je drugi ključ zamik abecede za isto število znakov, le v drugo smer). Tema ključema rečemo šifrirni in dešifrirni ključ (ang. encryption/decryption key), njuna funkcija je očitna iz imena.
 \newline
 \newline
-Kriptosistemov, kjer sta šifrirni in dešifrirni ključ enaka oz. vidno povezana, pravimo \textbf{simetrične šifre}. Temu pa seveda ni vedno tako, le zaradi lažjega dojemanja in hitrejšega računanja sta si ključa enaka. Kriptosistemom, kjer šifrirni in dešifrirni ključ \underline{nista} enaka, pravimo \textbf{asimetrične šifre}. Ravno asimetričnost pa je ključna lastnost, ki zagotavlja varnost algoritmu RSA.
+Kriptosistemom, kjer sta šifrirni in dešifrirni ključ enaka oz. vidno povezana, pravimo \textbf{simetrične šifre}. Temu pa seveda ni vedno tako, le zaradi lažjega dojemanja in hitrejšega računanja sta si ključa enaka. Kriptosistemom, kjer šifrirni in dešifrirni ključ \underline{nista} enaka, pravimo \textbf{asimetrične šifre}. Ravno asimetričnost pa je ključna lastnost, ki zagotavlja varnost algoritmu RSA.
 
 \newpage
 %definicija algoritma
@@ -104,14 +105,14 @@ Kriptosistemov, kjer sta šifrirni in dešifrirni ključ enaka oz. vidno povezan
 
 \subsection{Motivacija}
 
-Z nadaljnim razvojem računalnika so izvirne tradicionalne šifre postale vse manj zanesljive, ročne so bile prepočasne in preprosto jih je bilo razvozlati, mehanične pa so bile izredno drage in njihovi so bili prezapleteni in so pogosto v sebi skrivali človeški element, ki je vedno vir napak. Poleg tega so skoraj vse tradicionalne šifre, ročne ali mehanične, kot so pokazale Turingove bombe, proti računalniku neuporabne. Tako se je pojavila potreba po \emph{univerzalnem} algoritmu na matematično trdnih temeljih, ki bi ga lahko uporabljali računalniki in bi hkrati bil proti njim tudi varen.
+Z nadaljnim razvojem računalnika so izvirne tradicionalne šifre postale vse manj zanesljive, ročne so bile prepočasne in preprosto jih je bilo razvozlati, mehanične pa so bile izredno drage in njihovi algoritmi so bili prezapleteni in so pogosto v sebi skrivali človeški element, ki je vedno vir napak. Poleg tega so skoraj vse tradicionalne šifre, ročne ali mehanične, kot so pokazale Turingove bombe, proti računalniku neuporabne. Tako se je pojavila potreba po \emph{univerzalnem} algoritmu na matematično trdnih temeljih, ki bi ga lahko uporabljali računalniki in bi hkrati bil proti njim tudi varen.
 
 \subsection{Ideja je rojena}
 
 Svet ni čakal dolgo. Leta 1978 so matematiki in računalničarji Ronald Rivest, Adi Shamir in Leonard Adleman objavili prvo različico svoje ideje, prvi kompleten asimetričen kriptosistem z \textbf{javnim in zasebnim ključem}. Imenovali so ga kar po začetnicah svojih priimkov - algoritem RSA. Do končne različice so potrebovali še nekaj let in leta 1983 so jim odobrili patent.
 \newline
 \newline
-Če šifrirni algoritem razumemo kot matematično funkcijo, je bil izumiteljem algoritma RSA cilj napisati tako funkcijo, ki je \emph{neobrnljiva} - torej iz šifrirane vrednosti ne moremo na noben smiselen način hitro razbrati originalne vrednosti, razen če smo imetnik posebnih privatnih podatkov, ki nam zagotavljajo, da le mi lahko razberemo šifrirane podatke. Če želimo \emph{mi} prejeti šifrirano sporočilo, na poseben kasneje opisan način tvorimo t.i. javni ključ, ki tukaj igra vlogo ključa za šifriranje. Nato vsem potencialnim pošiljateljem rečemo, naj po algoritmu zakodirajo svoje sporočilo nam in naj nam ga pošljejo. Ker je šifrirna funkcija neobrnljiva, tudi pošiljatelj sam ne more nazaj dešifrirati izvornega sporočila, prav tako pa ga ne more dešifrirati drug nelegitimni prestreznik podatkov. Iz zasebnih podatkov, ki jih poleg nas ne ve nihče in s katerimi smo tvorili javni ključ sedaj tvorimo zasebni ključ, ki je z javnim sicer povezan, vendar na računsko zelo zapleten način. Z zasebnim ključem lahko sedaj le mi dešifriramo dobljene podatke. Če želimo svoje sporočilo poslati komu drugemu, prosimo za njegov javni ključ (pod pogojem, da ga še nimamo), nato pa z njim šifriramo sporočilo in ga pošljemo.
+Če šifrirni algoritem razumemo kot matematično funkcijo, je bil izumiteljem algoritma RSA cilj napisati tako funkcijo, ki je \emph{neobrnljiva} - torej iz šifrirane vrednosti ne moremo na noben smiselen način hitro razbrati originalne vrednosti, razen če smo imetnik posebnih privatnih podatkov, ki nam zagotavljajo, da le mi lahko razberemo šifrirane podatke. Če želimo \emph{mi} prejeti šifrirano sporočilo, na poseben kasneje opisan način tvorimo t.i. javni ključ, ki tukaj igra vlogo ključa za šifriranje. Nato vsem potencialnim pošiljateljem rečemo, naj po algoritmu zakodirajo svoje sporočilo nam in naj nam ga pošljejo. Ker je šifrirna funkcija neobrnljiva, tudi pošiljatelj sam ne more nazaj dešifrirati izvornega sporočila, prav tako pa ga ne more dešifrirati drug nelegitimen prestreznik podatkov. Iz zasebnih podatkov, ki jih poleg nas ne ve nihče in s katerimi smo tvorili javni ključ sedaj tvorimo zasebni ključ, ki je z javnim sicer povezan, vendar na računsko zelo zapleten način. Z zasebnim ključem lahko sedaj le mi dešifriramo dobljene podatke. Če želimo svoje sporočilo poslati komu drugemu, prosimo za njegov javni ključ (pod pogojem, da ga še nimamo), nato pa z njim šifriramo sporočilo in ga pošljemo.
 \newline
 \newline
 V naslednjih podrazdelkih si bomo pogledali matematične osnove potrebne za razumevanje algoritma RSA, nato pa algoritem sam.
@@ -121,7 +122,7 @@ V naslednjih podrazdelkih si bomo pogledali matematične osnove potrebne za razu
 \subsubsection{Modularna aritmetika in kolobar $\Zn$}
 
 \begin{matematika}{Definicija}
-\textbf{Modularna aritmetika} (včesih tudi urna aritmetika) po modulu $n$ je aritmetika omejena s kongruenčno relacijo $a R_n b \iff n | b - a$.
+\textbf{Modularna aritmetika} (včasih tudi urna aritmetika) po modulu $n$ je aritmetika omejena s kongruenčno relacijo $a R_n b \iff n | b - a$.
 
 Z drugimi besedami je to aritmetika v kolobarju $\Zn$, tj. kolobar ostankov pri deljenju celih števil z $n$, kjer je $n$ \textbf{modul}.
 \end{matematika}
@@ -144,7 +145,7 @@ Modularna aritmetika igra v algoritmu ključno vlogo, zagotavlja namreč neobrnl
 \begin{matematika}{Primer}
 Naj bo $f_5(x) = x \text{ } mod \text{ } 5$. Vprašajmo se, katero vrednost smo vstavili v funkcijo, da smo dobili vrednost $3$?
 \newline
-Odgovor je očitno $3$, pa tudi $8, 13, 18, \dots$. Hiter premislek nam pove, da je množica rešitev očitno enaka kar $f^{-1}(\{ 3 \}) = \{ 5 \cdot k + 3; k \in \mathbb{Z} \}$, ta pa je v očitni bijektivni korespondenci z množico celih števil.
+Odgovor je očitno $3$, pa tudi $8, 13, 18, \dots$ Hiter premislek nam pove, da je množica rešitev očitno enaka kar $f^{-1}(\{ 3 \}) = \{ 5 \cdot k + 3; k \in \mathbb{Z} \}$, ta pa je v očitni bijektivni korespondenci z množico celih števil.
 \end{matematika}
 
 \subsubsection{Funkcija $\varphi$ in Eulerjev izrek}
@@ -157,7 +158,7 @@ Eulerjeva funkcija $\varphi$ nam pomaga formulirati naslednji izrek:
 \newline
 \newline
 \begin{matematika}{Izrek}
-Če sta si števili $x$ in $x$ tuji, velja:
+Če sta si števili $x$ in $n$ tuji, velja:
 $x^{\varphi (n)} = 1 \text{ } (mod \text{ } n)$. \\
 \end{matematika}
 
@@ -183,10 +184,10 @@ Polinom $f$ je formalna vsota $f(X) = a_0 + a_1 X + \cdots a_n X^n$. $X$ imenuje
 Znake lahko sedaj zakodiramo na primer tako:
 \begin{itemize}[label=\ding{227}]
 \item izračunamo moč množice znakov (abeceda), ki bi jih radi kodirali, to število naj bo $m$,
-\item vsakemu znaku iz te množice priredimo enolično vrednost iz množice $\mathbb{Z_m}$,
+\item vsakemu znaku iz te množice priredimo enolično vrednost iz množice $\mathbb{Z}_m$,
 \item preštejemo število znakov, ki bi jih radi zakodirali (besedilo), naj bo to število $j$,
 \item sestavimo polinom $f(X) = a_0 + a_1 X + \cdots + a_j X^j$,
-\item naše iskano število je vrednost polinomske funkcije tega polinoma izračunane za $x=m$.
+\item naše iskano število je vrednost polinomske funkcije tega polinoma izračunane za $x=m$, kjer so koeficient $a_i$ vrednosti črk na $i$-tem mestu besedila.
 \end{itemize}
 \begin{matematika}{Primer}
 Premislimo lahko, kako sploh pojmujemo naš standardni desetiški zapis. Oglejmo si na primer število $1327$. Načeloma je $1327 = 1 \cdot 10^3 + 3 \cdot 10^2 + 2 \cdot 10 + 7$. Po obratnem postopku sedaj namesto $10$ pišemo $X$ in vidimo, da je število v desetiškem zapisu le polinom s koeficienti iz $\mathbb{Z}_{10}$, torej med $0$ in $9$, izračunan v $x = 10$. \\
@@ -222,7 +223,7 @@ Naj bo $n \in \mathbb{Z}$ produkt samih različnih praštevil in naj bosta $d, e
 
 \begin{matematika}{Dokaz}
 Ker $n | a^{de} - a$ natanko tedaj, ko $p | a^{de} - a$ za vsak praštevilski delitelj $p$ števila $n$, je dovolj pokazati, da za vsak tak $p$ velja $a^{de} = a \text{ } (mod \text{ } p)$. Ločimo dve možnosti: \\
-Če $gcd(a, p) \neq 1$, potem je $a = 0 \text{ } (mod \text{ } p)$ očitno, saj je zaradi praštevilskosti $p$ $a = kp$ za neko celo število $k$. Trivialno sledi, da je tudi $a^{de} = a \text{ } (mod \text{ } p)$, saj sta obe strani enaki $0$. \\
+Če $gcd(a, p) \neq 1$, potem je $a = 0 \text{ } (mod \text{ } p)$ očitno, saj je zaradi praštevilskosti števila $p$ $a = kp$ za neko celo število $k$. Trivialno sledi, da je tudi $a^{de} = a \text{ } (mod \text{ } p)$, saj sta obe strani enaki $0$. \\
 Če pa $gcd(a, p) = 1$, po Evklidovem izreku sledi, da je $a^{\varphi (p)} = a^{p-1} = 1 \text{ } (mod \text{ } p)$. Ker po predpostavki $(p-1)|(de-1)$, velja tudi $a^{de-1} = 1 \text{ } (mod \text{ } p)$. Če pomnožimo še obe strani enakosti z $a$, dobimo željeni rezultat. \\ \hspace*{\fill} $\square$ \\
 \end{matematika}
 
@@ -378,9 +379,29 @@ Vredno je omeniti, da je ob pravilni izbiri ključev ta napad časovno ekvivalen
 \section{Zaključek}
 
 Kot smo videli, obstajajo mnogi bolj ali manj zapleteni napadi na RSA kriptosistem, vsakega pa se da relativno enostavno preprečiti, če le malo pazimo pri izbiri ključev in sporočilu dodamo mero naključnosti. Algoritem RSA je zato zelo varen in širom uporabljen še danes. Uporablja ga recimo popularen protokol za varen prenos podatkov čez omrežje OpenSSH, s katerim se povprečen uporabnik interneta nezavedno sreča skoraj dnevno, matematiki in programerji pa ga poznamo predvsem zato, ker ga uporablja platforma za nadzor različic GitHub.\\
-Pogosto se uporablja tudi za overjanje istovetnosti oz. avtentikacijo. Če vemo, da določen javni ključ pripada neki osebi, lahko ta oseba izkaže svojo istovetnost tako, da nam s preprosto izmenjavo sporočila dokaže, da si lasti pripadajoči zasebni ključ.
+Pogosto se algoritem RSA uporablja tudi za overjanje istovetnosti oz. avtentikacijo. Če vemo, da določen javni ključ pripada neki osebi, lahko ta oseba izkaže svojo istovetnost tako, da nam s preprosto izmenjavo sporočila dokaže, da si lasti pripadajoči zasebni ključ.
 \newline
 \newline
 Algoritem RSA ima seveda ključno pomanjkljivost - računsko je zelo počasen. Zato ponavadi ni primeren za izmenjavo velike količine podatkov v realnem času. Uporablja se predvsem za varno izmenjavo ključa neke hitrejše simetrične šifre, preko katere potem poteka nadaljna izmenjava podatkov. Kljub temu je nepogrešljiv in izredno varen del kriptografije, ki je kljub svoji starosti preživel zob časa.
+
+\newpage
+\begin{thebibliography}{9}
+\bibitem{clanek}
+Stein W.
+\textit{Elementary Number Theory: Primes, Congruences, and Secrets},
+US San Diego, Harvard, University of Washington, 2017,
+dostopno na \url{https://wstein.org/ent/ent.pdf}
+
+\bibitem{knjigasifer}
+Singh S.
+\textit{The code book},
+Four Estate Ltd, 2003
+
+\bibitem{cryptographyandnetsec}
+Gupta P.C. 
+\textit{Cryptography and network security},
+PHI Learning Private Limited, Delhi, 2015
+
+\end{thebibliography}
 
 \end{document}
