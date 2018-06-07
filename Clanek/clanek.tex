@@ -80,21 +80,21 @@ Zaradi očitnih prednosti takega prenosa občutljivih informacij, pomembnih spor
 \newline
 Človeški radovednosti pa vendar ni meja in mnogi se niso pustili prepričati v neomajno varnost zgodnje kriptografije. Tako so začeli iskati načine, kako bi šifre oz. kode na najbolj učinkovit način razbili, tj. našli njihov pravi pomen brez \textbf{ključa} - informacije, ki avtorizirani osebi omogoči preprosto razbiranje šifriranih podatkov. Tako se je rodila nova veda, če ne celo znanost, imenovana \textbf{kriptanaliza} - znanost razbiranja kodov brez avtorizacije. Če je kriptografija temeljila predvsem na izvirnosti avtorja šifre, je kriptanaliza po svoji naravi izrazito matematična veda. Nekaterim se je ideja razbijanja šifer, ki so inherentno uganke, zdela nadvse zabavna, ne le pomembna disciplina. Tako so se začeli s kriptografijo in kriptanalizo ukvarjati tudi ugankarji, vplive pa v razvedrilni matematiki vidimo še danes.
 
-Ne smemo zanemariti tudi vpliva kriptografije in predvsem kriptanalize na lingvistiko, razbiranje pomena neznanega jezika v morda neznani pisavi z omejenim številom podatkov je v samem srcu kriptanazize, če zapis jemljemo kot kod.
+Ne smemo zanemariti tudi vpliva kriptografije in predvsem kriptanalize na lingvistiko, razbiranje pomena neznanega jezika v morda neznani pisavi z omejenim številom podatkov je v samem srcu kriptanalize, če zapis jemljemo kot kod.
 
 \subsection{Kriptografija pred računalnikom}
 
-Kriptografska praksa se je tako skozi stoletja razvijala in upodabljala v vseh možnih oblikah. Od tajnih pisav, piktogramov, premišljenih premetank pa do menjave črk ali celo celih besed za druge. Kot bolj zvito premetanko je vredno omeniti \emph{skitalo}, pripomoček špartanskih generalov že pred našim štetjem. Na palico z natanko določenim polmerom so ovili za eno črko širok trak zaporedoma, da se ovoji niso prekrivali. Nato so vzdolž palice napisali sporočilo in odvili trak, kar je na sistematičen način premešalo črke besedila. Le imetnik palice z natanko istim polmerom je lahko ta trak ovil okrog nje in razbral izvorno sporočilo.
+Kriptografska praksa se je tako skozi stoletja razvijala in upodabljala v vseh možnih oblikah. Od tajnih pisav, piktogramov, premišljenih premetank pa do menjave črk ali celo celih besed za druge. Kot bolj zvito premetanko je vredno omeniti \emph{skitalo}, pripomoček špartanskih generalov že pred našim štetjem. Na palico z natanko določenim polmerom so ovili za eno črko širok trak zaporedoma, da se ovoji niso prekrivali. Nato so vzdolž palice napisali sporočilo in odvili trak, kar je na sistematičen način premešalo črke besedila. Le imetnik palice z natanko enakim polmerom je lahko ta trak ovil okrog nje in razbral izvorno sporočilo.
 
 Prav tako ne smemo pozabiti na \emph{cezarjanko}, šifro iz rimskih časov izrazito polinomske oblike $(x \mapsto x + c)$, kjer je $c$ zamik abecede. Cezarjanka namreč deluje tako, da celotno abecedo zamaknemo za fiksno število črk, nato pa prvotne črke sporočila prepišemo v novi, zamaknjeni abecedi. Njena izboljšava, t.i. \emph{Vigen\`{e}rov kvadrat}, kjer isto ciklično po črkah počnemo z dogovorjenim številom abeced, vsaka zamaknjena drugače, je bila dolgo časa sprejeta kot neomajno varna (število zamaknjenih abeced kot njihovi zamiki so seveda tajni), čeprav sta obe šifri močno občutljivi na kriptanalitično metodo \emph{frekvenčne analize} (v katero se ne bom poglabljal), kjer pogledamo ponovitve posameznih šifriranih črk in to primerjamo z znanimi frekvencami črk v nešifriranem zapisu, nato pa po smislu uganemo neznane črke. Pri Vigen\`{e}rovem kvadratu je potrebno najprej ugotoviti število abeced, kar doda nivo varnosti.
 
-Zgodovinsko in filmsko bolj pismen človek najbrž pozna \emph{enigmo}, strašljivo učinkovito šifro, ki so jo uporabljali nacisti v času druge svetovne vojne. Tokrat šifer niso pisali na roke, temveč je za njih šifriral stroj, podoben pisalnemu stroju, prav tako imenovan enigma, zato ta sistem spada v kategorijo t.i. mehanskih šifer. Dolgo časa nihče ni vedel, kako ga razbiti, ključ so namreč menjali na 24 ur, algoritem je bil skoraj redundantno zapleten, fizične stroje pa so varovali z življenjem in jih raje uničili, kot prepustili v roke Zaveznikom. Pa vendar je matematik \emph{Alan Turing} ugotovil njene pomanjkljivosti in svoj abstrakten koncept, ki ga danes imenujemo Turingov stroj, udejanil v t.i. Turingove bombe, stroje, ki so bili sposobni v nekaj urah razbiti šifriranje enigme, danes pa so znani ne le kot sklop naprav, ki je zmagal vojno, vendar tudi kot prvi električni računalniki na svetu. S tem je Alan Turing postal oče računalništva in nezavedno postavil izziv:
+Zgodovinsko in filmsko bolj pismen človek najbrž pozna \emph{enigmo}, strašljivo učinkovito šifro, ki so jo uporabljali nacisti v času druge svetovne vojne. Tokrat šifer niso pisali na roke, temveč je za njih šifriral stroj podoben pisalnemu stroju, prav tako imenovan enigma, zato ta sistem spada v kategorijo t.i. mehanskih šifer. Dolgo časa nihče ni vedel, kako ga razbiti, ključ so namreč menjali na 24 ur, algoritem je bil skoraj odvečno zapleten, fizične stroje pa so varovali z življenjem in jih raje uničili, kot prepustili v roke Zaveznikom. Pa vendar je matematik \emph{Alan Turing} ugotovil njene pomanjkljivosti in svoj abstrakten koncept, ki ga danes imenujemo Turingov stroj, udejanil v t.i. Turingove bombe, stroje, ki so bili sposobni v nekaj urah razbiti šifriranje enigme, danes pa so znani ne le kot sklop naprav, ki je zmagal vojno, vendar tudi kot prvi električni računalniki na svetu. S tem je Alan Turing postal oče računalništva in nezavedno postavil izziv:
 
-Je kdo sposoben najti šifro, ki je računalnik ne bo sposoben rešiti?
+Je kdo sposoben najti šifro, ki je računalnik ne bo sposoben razvozlati?
 
 \subsection{Simetrično in asimetrično šifriranje}
 
-Ni težko opaziti, da vse do sedaj omenjene šifre zahtevajo le en ključ. Podatek, s katerim smo šifrirali podatke je neposredno in predvsem vidno povezan s podatkom, s katerim podatke nazaj dešifriramo. Pri tajnih pisavah je to kar njihov predpis, pri skitali polmer palice, pri cezarjanki zamik abecede itd. Pa vendar temu ni vedno tako. Tako kot kvadratna enačba z dvema enakima ničlama, imajo vsi šifrirni sistemi (s tujko kriptosistemi) dva ključa, le enaka sta (lahko tudi samo vidno povezana, npr. pri cezarjanki je drugi ključ zamik abecede za isto število znakov, le v drugo smer). Tema ključema rečemo šifrirni in dešifrirni ključ (ang. encryption/decryption key), njuna funkcija je očitna iz imena.
+Ni težko opaziti, da vse do sedaj omenjene šifre zahtevajo le en ključ. Podatek, s katerim smo šifrirali podatke je neposredno in predvsem vidno povezan s podatkom, s katerim podatke nazaj dešifriramo. Pri tajnih pisavah je to kar njihov predpis, pri skitali polmer palice, pri cezarjanki zamik abecede itd. Pa vendar temu ni vedno tako. Tako kot kvadratna enačba z dvema enakima ničlama, imajo vsi šifrirni sistemi (s tujko kriptosistemi) dva ključa, le enaka sta (lahko tudi samo vidno povezana, npr. pri cezarjanki je drugi ključ zamik abecede za isto število znakov v drugo smer). Tema ključema rečemo šifrirni in dešifrirni ključ (ang. encryption/decryption key), njuna funkcija je očitna iz imena.
 \newline
 \newline
 Kriptosistemom, kjer sta šifrirni in dešifrirni ključ enaka oz. vidno povezana, pravimo \textbf{simetrične šifre}. Temu pa seveda ni vedno tako, le zaradi lažjega dojemanja in hitrejšega računanja sta si ključa enaka. Kriptosistemom, kjer šifrirni in dešifrirni ključ \underline{nista} enaka, pravimo \textbf{asimetrične šifre}. Ravno asimetričnost pa je ključna lastnost, ki zagotavlja varnost algoritmu RSA.
@@ -105,14 +105,14 @@ Kriptosistemom, kjer sta šifrirni in dešifrirni ključ enaka oz. vidno povezan
 
 \subsection{Motivacija}
 
-Z nadaljnim razvojem računalnika so izvirne tradicionalne šifre postale vse manj zanesljive, ročne so bile prepočasne in preprosto jih je bilo razvozlati, mehanične pa so bile izredno drage in njihovi algoritmi so bili prezapleteni in so pogosto v sebi skrivali človeški element, ki je vedno vir napak. Poleg tega so skoraj vse tradicionalne šifre, ročne ali mehanične, kot so pokazale Turingove bombe, proti računalniku neuporabne. Tako se je pojavila potreba po \emph{univerzalnem} algoritmu na matematično trdnih temeljih, ki bi ga lahko uporabljali računalniki in bi hkrati bil proti njim tudi varen.
+Z nadaljnim razvojem računalnika so izvirne tradicionalne šifre postale vse bolj nezanesljive, ročne so bile prepočasne in preprosto jih je bilo razvozlati, mehanične pa so bile izredno drage, njihovi algoritmi so bili prezapleteni in so pogosto v sebi skrivali človeški element, ki je vedno vir napak. Poleg tega so skoraj vse tradicionalne šifre, ročne ali mehanične, kot so pokazale Turingove bombe, proti računalniku neuporabne. Tako se je pojavila potreba po \emph{univerzalnem} algoritmu na \emph{matematično trdnih temeljih}, ki bi ga lahko uporabljali računalniki in bi hkrati bil proti njim tudi \emph{varen}.
 
 \subsection{Ideja je rojena}
 
-Svet ni čakal dolgo. Leta 1978 so matematiki in računalničarji Ronald Rivest, Adi Shamir in Leonard Adleman objavili prvo različico svoje ideje, prvi kompleten asimetričen kriptosistem z \textbf{javnim in zasebnim ključem}. Imenovali so ga kar po začetnicah svojih priimkov - algoritem RSA. Do končne različice so potrebovali še nekaj let in leta 1983 so jim odobrili patent.
+Svet ni čakal dolgo. Leta 1978 so matematiki in računalničarji Ronald~Rivest, Adi~Shamir in Leonard~Adleman objavili prvo različico svoje ideje, prvi kompleten asimetričen kriptosistem z \textbf{javnim in zasebnim ključem}. Imenovali so ga kar po začetnicah svojih priimkov - algoritem RSA. Do končne različice so potrebovali še nekaj let in leta 1983 so jim odobrili patent.
 \newline
 \newline
-Če šifrirni algoritem razumemo kot matematično funkcijo, je bil izumiteljem algoritma RSA cilj napisati tako funkcijo, ki je \emph{neobrnljiva} - torej iz šifrirane vrednosti ne moremo na noben smiselen način hitro razbrati originalne vrednosti, razen če smo imetnik posebnih privatnih podatkov, ki nam zagotavljajo, da le mi lahko razberemo šifrirane podatke. Če želimo \emph{mi} prejeti šifrirano sporočilo, na poseben kasneje opisan način tvorimo t.i. javni ključ, ki tukaj igra vlogo ključa za šifriranje. Nato vsem potencialnim pošiljateljem rečemo, naj po algoritmu zakodirajo svoje sporočilo nam in naj nam ga pošljejo. Ker je šifrirna funkcija neobrnljiva, tudi pošiljatelj sam ne more nazaj dešifrirati izvornega sporočila, prav tako pa ga ne more dešifrirati drug nelegitimen prestreznik podatkov. Iz zasebnih podatkov, ki jih poleg nas ne ve nihče in s katerimi smo tvorili javni ključ sedaj tvorimo zasebni ključ, ki je z javnim sicer povezan, vendar na računsko zelo zapleten način. Z zasebnim ključem lahko sedaj le mi dešifriramo dobljene podatke. Če želimo svoje sporočilo poslati komu drugemu, prosimo za njegov javni ključ (pod pogojem, da ga še nimamo), nato pa z njim šifriramo sporočilo in ga pošljemo.
+Če šifrirni algoritem razumemo kot matematično funkcijo, je bil izumiteljem algoritma RSA cilj napisati tako funkcijo, ki je \emph{neobrnljiva} - torej iz šifrirane vrednosti ne moremo na noben smiselen način hitro razbrati originalne vrednosti, razen če smo imetnik posebnih privatnih podatkov, ki nam zagotavljajo, da le mi lahko razberemo šifrirane podatke. Če želimo \emph{mi} prejeti šifrirano sporočilo, na poseben, kasneje opisan način tvorimo t.i. javni ključ, ki tukaj igra vlogo ključa za šifriranje. Nato vsem potencialnim pošiljateljem rečemo, naj po algoritmu zakodirajo svoje sporočilo in naj nam ga pošljejo. Ker je šifrirna funkcija neobrnljiva, tudi pošiljatelj sam ne more nazaj dešifrirati izvornega sporočila, prav tako pa ga ne more dešifrirati drug nelegitimen prestreznik podatkov. Iz zasebnih podatkov, ki jih poleg nas ne ve nihče in s katerimi smo tvorili javni ključ, sedaj tvorimo zasebni ključ, ki je z javnim sicer povezan, vendar na računsko zelo zapleten način. Z zasebnim ključem lahko sedaj le mi dešifriramo dobljene podatke. Če želimo svoje sporočilo poslati komu drugemu, prosimo za njegov javni ključ (če ga še nimamo), nato pa z njim šifriramo sporočilo in ga pošljemo.
 \newline
 \newline
 V naslednjih podrazdelkih si bomo pogledali matematične osnove potrebne za razumevanje algoritma RSA, nato pa algoritem sam.
@@ -133,25 +133,25 @@ Zaradi lažjega pregleda bom definiral še novo operacijo in novo relacijo na mn
 \newline
 \begin{matematika}{Oznake}
 \begin{itemize}[label=\ding{43}]
-\item Operacija $mod : \mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, ki slika $(a, b) \mapsto$ ostanek števila $a$ pri deljenju z $b$,
-\item Relacija $a = b \text{ }(mod  \text{ } n)$ pomeni, da celi števili $a$ in $b$ vrneta isti ostanek pri deljenju z $n$. Drugače: $a \text{ } mod \text{ } n = b \text{ } mod \text{ } n$. 
+\item Operacija mod : $\mathbb{Z} \times \mathbb{Z} \to \mathbb{Z}$, ki slika $(a, b) \mapsto$ ostanek števila $a$ pri deljenju z $b$,
+\item Relacija $a = b \text{ (mod   } n)$ pomeni, da celi števili $a$ in $b$ vrneta isti ostanek pri deljenju z $n$. Drugače: $a \text{  mod  } n = b \text{ mod } n$. 
 \end{itemize}
 \end{matematika}
 
 
-Modularna aritmetika igra v algoritmu ključno vlogo, zagotavlja namreč neobrnljivost šifrirne funkcije. Funkcija, ki v svojem predpisu kot končno operacijo uporablja definirano uperacijo $mod$ oz. modulo, je namreč skoraj agresivno neinjektivna, vsaka slika ima števno neskončno množico praslik.
+Modularna aritmetika igra v algoritmu ključno vlogo, zagotavlja namreč neobrnljivost šifrirne funkcije. Funkcija, ki v svojem predpisu kot končno operacijo uporablja definirano uperacijo mod oz. modulo, je namreč skoraj agresivno neinjektivna, vsaka slika ima števno neskončno množico praslik.
 \newline
 \newline
 \begin{matematika}{Primer}
-Naj bo $f_5(x) = x \text{ } mod \text{ } 5$. Vprašajmo se, katero vrednost smo vstavili v funkcijo, da smo dobili vrednost $3$?
+Naj bo $f_5(x) = x \text{ mod } 5$. Vprašajmo se, katero vrednost smo vstavili v funkcijo, da smo dobili vrednost $3$?
 \newline
-Odgovor je očitno $3$, pa tudi $8, 13, 18, \dots$ Hiter premislek nam pove, da je množica rešitev očitno enaka kar $f^{-1}(\{ 3 \}) = \{ 5 \cdot k + 3; k \in \mathbb{Z} \}$, ta pa je v očitni bijektivni korespondenci z množico celih števil.
+Odgovor je očitno $3$, pa tudi $8, 13, 18, \dots$ Hiter premislek nam pove, da je množica rešitev enaka kar $f^{-1}(\{ 3 \}) = \{ 5 \cdot k + 3; k \in \mathbb{Z} \}$, ta pa je v očitni bijektivni korespondenci z množico celih števil.
 \end{matematika}
 
 \subsubsection{Funkcija $\varphi$ in Eulerjev izrek}
 
 \begin{matematika}{Definicija}
-Eulerjeva funkcija $\varphi (n)$ vrne število vseh naravnih števil manjših od $n$, ki so $n$ tuja. Torej je $\varphi (n) = | \{ a \in \mathbb{N}; a \leq n, gcd(a, n) = 1 \} |$. \\
+Eulerjeva funkcija $\varphi (n)$ vrne število vseh naravnih števil manjših od $n$, ki so $n$ tuja. Torej je $\varphi (n) = | \{ a \in \mathbb{N}; a \leq n, \text{gcd}(a, n) = 1 \} |$. \\
 \end{matematika}
 
 Eulerjeva funkcija $\varphi$ nam pomaga formulirati naslednji izrek:
@@ -159,10 +159,10 @@ Eulerjeva funkcija $\varphi$ nam pomaga formulirati naslednji izrek:
 \newline
 \begin{matematika}{Izrek}
 Če sta si števili $x$ in $n$ tuji, velja:
-$x^{\varphi (n)} = 1 \text{ } (mod \text{ } n)$. \\
+$x^{\varphi (n)} = 1 \text{ (mod } n)$. \\
 \end{matematika}
 
-Izreka samega ne bom dokazal, služil pa bo kot ključno orodje pri dokazovanju trditve, ki nam zagotavlja matematično trdnost algoritma RSA. Obstajajo tudi drugi bolj ali manj konstruktivistični dokazi, vendar se bomo tukaj omejili na malce bolj matematičen pristop.
+Izreka samega ne bom dokazal(dokaz si lahko pogledate tukaj: \cite{clanek}, stran 26, izrek 2.1.20), služil pa bo kot ključno orodje pri dokazovanju trditve, ki nam zagotavlja matematično trdnost algoritma RSA. Obstajajo tudi drugi bolj ali manj konstruktivistični dokazi, vendar se bomo tukaj omejili na malce bolj matematičen pristop.
 \newline
 \newline
 \begin{matematika}{Opomba}
@@ -171,7 +171,7 @@ Vredno je omeniti, da če je $p$ praštevilo, je $\varphi (p) = p - 1$. Če je $
 
 \subsubsection{Polinomi in številski sistemi}
 
-Čeprav so za algoritem brezpomenski, polinomi še vedno igrajo veliko vlogo pri šifriranju, ne le pri algoritmu RSA, temveč tudi pri drugih kriptosistemih. Pomembna opazka, ki se bo pojavila, ko bomo algoritem podrobneje spoznali, je namreč, da šifrirna funkcija sprejema in vrača števila. Besedilna sporočila je potrebno zato "kodirati", tj. predstaviti z enoznačnim številom. V računalništvu obstaja mnogo vrst kodiranja, npr. ASCII in UTF-8, včasih pa je pametno podatke predstaviti na svoj način. Slednje nam v veliki meri omogočajo polinomi. \\
+Čeprav so za algoritem brezpomenski, polinomi še vedno igrajo veliko vlogo pri šifriranju; ne le pri algoritmu RSA, temveč tudi pri drugih kriptosistemih. Pomembna opazka, ki se bo pojavila, ko bomo algoritem podrobneje spoznali, je namreč, da šifrirna funkcija sprejema in vrača števila. Besedilna sporočila je potrebno zato "kodirati", tj. predstaviti z enoznačnim številom. V računalništvu obstaja mnogo vrst kodiranja, npr. ASCII in UTF-8, včasih pa je pametno podatke predstaviti na svoj način. Slednje nam v veliki meri omogočajo polinomi. \\
 
 \begin{matematika}{Definicija}
 Polinom $f$ je formalna vsota $f(X) = a_0 + a_1 X + \cdots a_n X^n$. $X$ imenujemo spremenljivka, številom $a_i$ pravimo koeficienti, $n$ pa je stopnja polinoma. Vsak polinom porodi \textbf{polinomsko funkcijo}. \\
@@ -186,7 +186,7 @@ Znake lahko sedaj zakodiramo na primer tako:
 \item izračunamo moč množice znakov (abeceda), ki bi jih radi kodirali, to število naj bo $m$,
 \item vsakemu znaku iz te množice priredimo enolično vrednost iz množice $\mathbb{Z}_m$,
 \item preštejemo število znakov, ki bi jih radi zakodirali (besedilo), naj bo to število $j$,
-\item sestavimo polinom $f(X) = a_0 + a_1 X + \cdots + a_j X^j$,
+\item sestavimo polinom $f(X) = a_0 + a_1 X + \cdots + a_{j-1} X^{j-1}$,
 \item naše iskano število je vrednost polinomske funkcije tega polinoma izračunane za $x=m$, kjer so koeficient $a_i$ vrednosti črk na $i$-tem mestu besedila.
 \end{itemize}
 \begin{matematika}{Primer}
@@ -201,12 +201,12 @@ Kljub visoki kompleksnosti in, kot bomo videli, visoki ravni varnosti, je vsaj i
 \begin{itemize}[label=\ding{227}]
 \item izberemo si dve \emph{različni praštevili} $p$ in $q$, to bosta naša privatna podatka, zato jih skrbno hranimo,
 \item izračunamo $n=p \cdot q$ in $\varphi (n) = \varphi (p) \cdot \varphi (q) = (p-1) \cdot (q-1),$
-\item izberemo naključen $e$, za katerega velja $gcd(e, \varphi (n)) = 1$,
+\item izberemo naključen $e$, za katerega velja gcd$(e, \varphi (n)) = 1$,
 \item \textbf{javni ključ nam tvori par $(e, n)$},
-\item z razširjenim Evklidovim algoritmom lahko sedaj relativno hitro kot edini imetniki $\varphi (n)$ izračunamo $d$, ki je multiplikativen inverz za $e$ v kolobarju $\mathbb{Z}_{\varphi (n)}$, drugače: $e \cdot d = 1 \text{ } (mod \text{ } \varphi (n))$,
+\item z razširjenim Evklidovim algoritmom lahko sedaj relativno hitro kot edini imetniki $\varphi (n)$ izračunamo $d$, ki je multiplikativen inverz za $e$ v kolobarju $\mathbb{Z}_{\varphi (n)}$, drugače: $e \cdot d = 1 \text{ (mod } \varphi (n))$,
 \item \textbf{zasebni ključ nam tvori par $(d, n)$}.
-\item Sporočilo $m$ sedaj šifriramo tako: $c = m^e \text{ } mod \text{ } n$.
-\item Skrito sporočilo dešifriramo tako: $m = c^d \text{ } mod \text{ } n$.
+\item Sporočilo $m$ sedaj šifriramo tako: $c = m^e \text{ mod } n$.
+\item Skrito sporočilo dešifriramo tako: $m = c^d \text{ mod } n$.
 \end{itemize}
 
 \subsubsection{Zakaj deluje}
@@ -217,19 +217,19 @@ Glede na masovno uporabo algoritma, je odgovor očitno pritrdilen, to pa nam zag
 \begin{matematika}{Izrek}
 Naj bo $n \in \mathbb{Z}$ produkt samih različnih praštevil in naj bosta $d, e \in \mathbb{N}$ taki, da za $\forall p \in \mathbb{P}$, kjer $p|n$, velja: $(p-1)|(d \cdot e - 1)$. Tedaj:
 \[
-\forall a \in \mathbb{Z}: \text{ } a^{d \cdot e} = a \text{ } (mod \text{ } n).
+\forall a \in \mathbb{Z}: \text{ } a^{d \cdot e} = a \text{ (mod } n).
 \]
 \end{matematika}
 
 \begin{matematika}{Dokaz}
-Ker $n | a^{de} - a$ natanko tedaj, ko $p | a^{de} - a$ za vsak praštevilski delitelj $p$ števila $n$, je dovolj pokazati, da za vsak tak $p$ velja $a^{de} = a \text{ } (mod \text{ } p)$. Ločimo dve možnosti: \\
-Če $gcd(a, p) \neq 1$, potem je $a = 0 \text{ } (mod \text{ } p)$ očitno, saj je zaradi praštevilskosti števila $p$ $a = kp$ za neko celo število $k$. Trivialno sledi, da je tudi $a^{de} = a \text{ } (mod \text{ } p)$, saj sta obe strani enaki $0$. \\
-Če pa $gcd(a, p) = 1$, po Evklidovem izreku sledi, da je $a^{\varphi (p)} = a^{p-1} = 1 \text{ } (mod \text{ } p)$. Ker po predpostavki $(p-1)|(de-1)$, velja tudi $a^{de-1} = 1 \text{ } (mod \text{ } p)$. Če pomnožimo še obe strani enakosti z $a$, dobimo željeni rezultat. \\ \hspace*{\fill} $\square$ \\
+Ker $n | a^{de} - a$ natanko tedaj, ko $p | a^{de} - a$ za vsak praštevilski delitelj $p$ števila $n$, je dovolj pokazati, da za vsak tak $p$ velja $a^{de} = a \text{ (mod } p)$. Ločimo dve možnosti: \\
+Če gcd$(a, p) \neq 1$, potem je $a = 0 \text{ (mod } p)$ očitno, saj je zaradi praštevilskosti števila $p$ $a = kp$ za neko celo število $k$. Trivialno sledi, da je tudi $a^{de} = a \text{ (mod } p)$, saj sta obe strani enaki $0$. \\
+Če pa gcd$(a, p) = 1$, po Evklidovem izreku sledi, da je $a^{\varphi (p)} = a^{p-1} = 1 \text{ (mod } p)$. Ker po predpostavki $(p-1)|(de-1)$, velja tudi $a^{de-1} = 1 \text{ (mod } p)$. Če pomnožimo še obe strani enakosti z $a$, dobimo željeni rezultat. \hspace*{\fill} $\square$ \\
 \end{matematika}
 
-Oznake v izreku so sugestivne, predstavljajo namreč istoimenske oznake v opisu postopka algoritma. Ker izrek velja za vsako celo število $a$, velja tudi za naše sporočilo $m$ (potrebno je sicer paziti, da je $m < n$, vendar to zaradi običajne velikosti števila $n$ ni problem). \\
-Naše sporočilo $m$ je šifrirano tako: $c = m^e \text{ } mod \text{ } n$. Ali z obratnim postopkom res dobimo prvotno sporočilo? \\
-$c^d \text{ } mod \text{ } n = (m^{e})^{d} \text{ } mod \text{ } n$, to pa je po izreku enako $m \text{ } mod \text{ } n$. Če smo pazili, da je $m < n$, je $m$ res enolično določen in zato izvorno nešifrirano sporočilo.
+Oznake v izreku so sugestivne, predstavljajo namreč istoimenske oznake v opisu postopka algoritma. Ker izrek velja za vsako celo število $a$, velja tudi za naše sporočilo $m$ (potrebno je sicer paziti, da je $m < n$, vendar to zaradi običajne velikosti števila $n$ ni problem, sicer pa sporočilo $m$ razdelimo na več kosov). \\
+Naše sporočilo $m$ je šifrirano tako: $c = m^e \text{ mod } n$. Ali z obratnim postopkom res dobimo prvotno sporočilo? \\
+$c^d \text{ mod } n = (m^{e})^{d} \text{ mod } n$, to pa je po izreku enako $m \text{ mod } n$. Če smo pazili, da je $m < n$, je $m$ res enolično določen in zato izvorno nešifrirano sporočilo.
 \newline
 \newline
 Sedaj, ko vemo, da algoritem deluje, bi radi preizkusili njegovo varnost. Najbolj učinkovito je, da se postavimo v čevlje napadalca, bodisi neavtoriziranega prestreznika sporočila bodisi prisluškovalca pri prejemniku sporočila, ter se vprašamo o slabostih in šibkih točkah RSA kriptosistema. Te šibke točke bomo poskusili kar se da izkoristiti, nato pa je naš cilj algoritem popraviti, če se le da.
@@ -240,7 +240,7 @@ Sedaj, ko vemo, da algoritem deluje, bi radi preizkusili njegovo varnost. Najbol
 
 \subsection{Načrt napada}
 
-Če si podrobneje pogledamo algoritem, v njem vidimo tri možne točke napada, te so se pojavijo vsakič, ko je potrebno nekaj izračunati (v našem primeru so to $n, \varphi (n), d$). Obstajajo torej 3 bolj ali manj očitne taktike:
+Če si podrobneje pogledamo algoritem, v njem vidimo tri možne točke napada, te se pojavijo vsakič, ko je potrebno nekaj izračunati (v našem primeru so to $n, \varphi (n), d$). Obstajajo torej 3 bolj ali manj očitne taktike:
 \begin{itemize}[label=\ding{227}]
 \item s faktorizacijo določimo praštevili $p$ in $q$ modula $n$, nato pa sami izračunamo $\varphi (n)$ in posledično $d$,
 \item določimo $\varphi (n)$ direktno iz javnega ključa $(e, n)$ in posledično izračunamo $d$,
@@ -250,13 +250,20 @@ Sedaj, ko vemo, da algoritem deluje, bi radi preizkusili njegovo varnost. Najbol
 Najbolj očiten deluje prvi pristop in pokazati se da, da je zahtevnost drugega in tretjega pristopa enaka zahtevnosti faktorizacije števila $n$. Torej je varnost algoritma proti matematičnim napadom določena s časom potrebnim za faktorizacijo števila $n$ na $p$ in $q$, kar pa je računsko zelo zahteven problem.
 \newline
 \newline
+Že v antični Grčiji so vedeli, da je vsako celo število $n$ možno zapisati kot produkt samih praštevil (upoštevajoč predznak). Prav tako so poznali problem faktorizacije števila, torej problem iskanja teh praštevil, ki $n$ sestavljajo. Učinkovitega algoritma za faktorizacijo niso poznali, števila so razstavljali s poskušanjem. Majhna števila je bilo zato razmeroma lahko faktorizirati, medtem ko se je pri večjih številih z velikimi prafaktorji stvar precej zapletla.\\
+Podobno velja še danes. Izkaže se, da je najtežje faktorizirati velika števila, ki so sestavljena le iz dveh praštevil podobnega velikostnega reda, kar pa $n$ iz algoritma RSA je. Algoritmi za faktorizacijo so sicer v dobi računalnikov postali malce bolj učinkoviti, vendar pa zares učinkovitega algoritma ni. Že samo preverjanje praštevilskosti je za splošno praštevilo počasen proces, potencialne delitelje moramo namreč preveriti do korena tega praštevila (po korenu je zapis očitno simetričen).
+\newline
+\newline
+Več o algoritmih za faktorizacijo celega števila si lahko preberete tukaj \cite{faktorizacija}, sam pa se v podrobnosti ne bom spuščal.
+\newline
+\newline
 Vendar pa v napadalnem računalništvu velja pravilo, da je sistem le tako trden, kot je ga je trdnega naredil tisti, ki ga je postavil, ljudje pa delamo napake. Tako lahko ob naši nepazljivosti pri izbiri ključev ali hranjenju skrivnih podatkov vešč napadalec uspešno vdre v naš kriptosistem. V nadaljevanju bo sledilo $8$ takih napadov.
 
 \subsection{Nekaj možnih napadov in njihova izvedba}
 
 \subsubsection{Faktorizacija $n$, če poznamo $\varphi (n)$}
 
-Recimo, da nam je kot napadalcu znano postalo število $\varphi (n)$. To se sicer zgodi le redko, pa vendar je možno, da je hranitelj tajnih podatkov, torej prejemnik sporočil, podatke hranil slabo. Čeprav bi lahko direktno izračunali $d$, si želimo vseeno faktorizirati $n$ na $p$ in $q$, da bomo res vedeli vse o kriptosistemu. Kot bomo videli, nam imetje podatka $\varphi (n)$ faktorizacijo $n$ trivializira.
+Recimo, da nam je kot napadalcu znano postalo število $\varphi (n)$. To se sicer zgodi le redko, pa vendar je možno, da je hranitelj tajnih podatkov, torej prejemnik sporočil, podatke hranil slabo. Čeprav bi lahko direktno izračunali $d$, si želimo vseeno faktorizirati $n$ na $p$ in $q$, da bomo o kriptosistemu res vedeli vse. Kot bomo videli, nam imetje podatka $\varphi (n)$ faktorizacijo $n$ trivializira.
 \newline
 \newline
 Sedaj imamo za dve neznanki $p$ in $q$ namreč dve enačbi: 
@@ -290,7 +297,7 @@ Iskanje praštevil je za računalnik precej naporno in morda se zdi milostna ide
 Denimo, da vemo (oz. se nam dozdeva), da je razlika števil $p$ in $q$ majhna. Potem lahko poskusimo $n$ faktorizirati s \emph{Fermatovo faktorizacijsko metodo}. Brez izgube splošnosti lahko rečemo, da $p > q$ (v nasprotnem primeru je postopek popolnoma simetričen na $p$ in $q$). Potem velja:
 \begin{equation}
 \label{eq:ffm}
-n = (\frac{p+q}{2})^2 - (\frac{p-q}{2})^2.
+n = \left(\frac{p+q}{2}\right)^2 - \left(\frac{p-q}{2}\right)^2.
 \end{equation}
 Ker je razlika $p$ in $q$ majhna je $s := \frac{p-q}{2}$ majhno število, $t := \frac{p+q}{2}$ pa je le malo večji od $\sqrt{n}$. Velja:
 \begin{equation}
@@ -305,33 +312,33 @@ Sedaj preprosto sledi $p = t + s$ in $q = t - s$.
 
 \subsubsection{Faktorizacija $n$, če poznamo $d$, oz. napad na skupen modul}
 
-Recimo, da smo nekako izvedeli, kaj je zasebni ključ $d$ naše tarče. Radi faktorizirali $n$ na praštevili $p$ in $q$. Pojavi se seveda vprašanje, zakaj bi to naredili? Odgovor je preprost: izkaže se, da si skupina ljudi včasih deli skupen modul $n$, uporabljajo le različen $e$. Če poznamo $d$ enega od pripadnikov te skupine in znamo z uporabo tega podatka učinkovito faktorizirati $n$, smo vdrli v kriptosistem celotne mreže ljudi, ki si deli modul $n$.
+Recimo, da smo nekako izvedeli, kaj je zasebni ključ $d$ naše tarče. Radi bi faktorizirali $n$ na praštevili $p$ in $q$. Pojavi se seveda vprašanje, zakaj bi to naredili? Odgovor je preprost: izkaže se, da si skupina ljudi včasih deli skupen modul $n$, uporabljajo le različen $e$. Če poznamo $d$ enega od pripadnikov te skupine in znamo z uporabo tega podatka učinkovito faktorizirati $n$, smo vdrli v kriptosistem celotne mreže ljudi, ki si deli modul $n$.
 \newline
 \newline
-Znan je probabilističen algoritem, tj. algoritem z visoko verjetnostjo uspeha, ki nam netrivialno razstavi $n$.
+Znan je verjetnosti algoritem, tj. algoritem z visoko verjetnostjo uspeha, ki nam netrivialno razstavi $n$. \\
 
 \begin{matematika}{Algoritem}
-Recimo, da je $d$ znan podatek, $(e, n)$ pa je javni ključ za ta $d$. Definiramo $m := de -1$. Torej velja $a^m = 1 \text{ } (mod \text{ } n)$.
+Recimo, da je $d$ znan podatek, $(e, n)$ pa je javni ključ za ta $d$. Definiramo $m := de -1$. Torej velja $a^m = 1 \text{ (mod } n)$.
 \begin{itemize}[label=\ding{227}]
-\item Če je $m$ sod in $a^{m/2} = 1 \text{ } (mod \text{ } n)$ za več naključnih $a$-jev, nastavimo $m = \frac{m}{2}$. Korak ponavljamo dokler so pogoji na $m$ zadoščeni.
-\item Izberemo naključen $a$ in izračunamo $g = gcd(a^{m/2} - 1, n)$.
+\item Če je $m$ sod in $a^{m/2} = 1 \text{ (mod } n)$ za več naključnih $a$-jev, nastavimo $m = \frac{m}{2}$. Korak ponavljamo dokler so pogoji na $m$ zadoščeni.
+\item Izberemo naključen $a$ in izračunamo $g = \text{gcd}(a^{m/2} - 1, n)$.
 \item Če je $g$ pravi delitelj $n$, smo našli enega izmed faktorjev in s tem oba, postopek zaključimo. V nasprotnem primeru se vrnemo nazaj na prejšnji korak. \\
 \end{itemize}
 \end{matematika}
 
-Algoritma ne bom dokazal, saj se ta napad v praksi najmanj uporablja, saj velja dogovor: \\
+Algoritma sam ne bom dokazal (dokaz si lahko pogledate tukaj: \cite{clanek}, stran 64, algoritem 3.4.5). Ta napad se namreč v praksi najmanj uporablja, saj velja dogovor: \\
 \begin{matematika}{Rešitev}
 Dve osebi naj \underline{nikoli} ne uporabljata istega modula $n$. Praštevil je neskončno mnogo, zato za neupoštevanje tega dogovora ni izgovora.
 \end{matematika}
 
-\subsubsection{Chosen-ciphertext napad}
+\subsubsection{Napad z izbranim šifropisom}
 
-To je preprost napad, ki temelji na standardni velikosti \textbf{blokov} sporočila. Algoritem RSA je namreč t.i. \emph{bločna šifra}, kar pomeni, da je sporočilo razdeljeno v bloke navadno standardne velikosti. To sledi iz pogoja, da mora biti za enoličnost dešifrirne funkcije sporočilo $m < n$. Ker temu seveda pri arbitrarnem sporočilu ni tako, sporočilo preprosto razbijemo v take kose, da je številčna vrednost $m$ vsakega kosa manjša od $n$. \\
-Problem se pojavi, ko napadalec iz velikosti blokov lahko sklepa o našem izvornem sporočilu (npr. napadalec ve, da od določeni uri pošljemo vremensko napoved). Tako lahko določi najbolj verjetna sporočila in jih šifrira še sam, nato pa primerja s prestreženimi bloki. Če se šifri ujemata, je našel izvorno sporočilo in iz tega lahko sklepa o preostanku sporočila in tako določi najbolj verjetna sporočila za preostale, še neznane bloke.
+To je preprost napad, ki temelji na standardni velikosti \textbf{blokov} sporočila. Algoritem RSA je namreč t.i. \emph{bločna šifra}, kar pomeni, da je sporočilo razdeljeno v bloke navadno standardne velikosti. To sledi iz pogoja, da mora biti za enoličnost dešifrirne funkcije sporočilo $m < n$. Ker temu seveda pri poljubnem sporočilu ni tako, sporočilo preprosto razbijemo v take kose, da je številčna vrednost $m$ vsakega kosa manjša od $n$. \\
+Problem se pojavi, ko napadalec iz velikosti blokov lahko sklepa o našem izvornem sporočilu (npr. napadalec ve, da ob določeni uri pošljemo vremensko napoved). Tako lahko določi najbolj verjetna sporočila in jih šifrira še sam, nato pa primerja s prestreženimi bloki. Če se šifri ujemata, je našel izvorno sporočilo in iz tega lahko sklepa o njegovem preostanku in tako določi najbolj verjetna sporočila za preostale (še neznane) bloke.
 \newline
 \newline
 \begin{matematika}{Rešitev}
-Najbolj učinkovita metoda, ki je dandanes kar standard bločnih šifer, je t.i. \emph{soljenje} sporočila. Začetek vsakega bloka posolimo tako, da mu dodamo dogovorjeno število naključnih znakov. To zagotavlja, da se isto sporočilo nikoli ne šifirira večkrat v isti kod (po ang. \emph{ciphertext}). Vsekakor pa je vedno potrebno paziti, da je naša izbira javnega ključa takšna, da je množica možnih sporočil kar se da velika.
+Najbolj učinkovita metoda, ki je dandanes kar standard bločnih šifer, je t.i. \emph{soljenje} sporočila. Začetek vsakega bloka posolimo tako, da mu dodamo dogovorjeno število naključnih znakov. To zagotavlja, da se isto sporočilo nikoli ne šifirira večkrat v isti kod. Vsekakor pa je vedno potrebno paziti, da je naša izbira javnega ključa takšna, da je množica možnih sporočil kar se da velika.
 \end{matematika}
 
 \subsubsection{Napad na majhen šifrirni eksponent $e$}
@@ -339,15 +346,18 @@ Najbolj učinkovita metoda, ki je dandanes kar standard bločnih šifer, je t.i.
 Spet se morda zdi, da je zaradi računske učinkovitosti pametno izbrati čim manjši $e$. Spet je to huda napaka, močno lahko namreč škodi neobrnljivosti šifrirne funkcije.
 \newline
 \newline
-Zamislimo si, da ima sporočilo $m$ glede na $n$ relativno majhno vrednost. Če je eksponent $e$ dovolj majhen, se lahko pripeti, da je $m^e < n$. Potem je tudi $c = m^e$, saj modulo $n$ v šifrirni funkciji vrednosti ne spremeni. Torej lahko iz šifre $c$ preprosto dobimo izvorno sporočilo, če se v mislih prestavimo v realna števila in izračunamo $m = c^{1/e}$. \\
+Zamislimo si, da ima sporočilo $m$ glede na $n$ relativno majhno vrednost. Če je eksponent $e$ dovolj majhen, se lahko pripeti, da je tudi $m^e < n$. Potem je $c = m^e$, saj modulo $n$ v šifrirni funkciji vrednosti ne spremeni. Torej lahko iz šifre $c$ preprosto dobimo izvorno sporočilo, če izračunamo $m = c^{1/e}$. \\
 
 \begin{matematika}{Rešitev}
-Premajho sporočilo $m$ na začetku spet posolimo, da mu z dodanimi znaki povečamo vrednost, da velja $m^e > n$. Poleg tega je v splošnem pametneje izbrati malo večji $e$.
+Premajho sporočilo $m$ na začetku spet posolimo in mu tako z dodanimi znaki povečamo vrednost, da velja $m^e > n$. Poleg tega je v splošnem pametneje izbrati malo večji $e$.
 \end{matematika}
 
 \subsubsection{Napad na majhen dešifrirni eksponent $d$}
 
-Zopet bi se mogoče v imenu računske učinkovitosti zdelo smiselno izbrati take $e$, $p$ in $q$, da bo $d$ čim manjši. Podobno kot v prejšnjem primeru je to huda napaka. Kriptograf Michael J. Wiener je namreč pokazal, da se da $d$ učinkovito določiti, če velja $d < \frac{1}{3} \cdot n^{1/4}$ in če za praštevili $p$ in $q$ velja $q < p < 2q$ (analogno za $q > p$), kar pa ni tako redko, saj praštevila pogosto izbiramo iz določenega spektra, ki pa je še vedno dovolj velik, da števili $p$ in $q$ nista preveč skupaj. \\
+Zopet bi se mogoče v imenu računske učinkovitosti zdelo smiselno izbrati take $e$, $p$ in $q$, da bo $d$ čim manjši. Podobno kot v prejšnjem primeru je to huda napaka. Kriptograf Michael J. Wiener je namreč pokazal, da se da $d$ učinkovito določiti, če velja $d < \frac{1}{3} \cdot n^{1/4}$ in če za praštevili $p$ in $q$ velja $q < p < 2q$ (analogno za $q > p$), kar pa ni tako redko, saj praštevila pogosto izbiramo v določenenem velikostnem redu, ki pa je še vedno dovolj velik, da števili $p$ in $q$ nista preveč skupaj.
+\newline
+\newline
+Bolj podroben opis tega napada si lahko pogledate tukaj: \cite{wiener}. \\
 
 \begin{matematika}{Rešitev}
 Tukaj se rešitev zdi očitna: pazljivo moramo izbrati ne premajhen $e$, da bo $d > \frac{1}{3} \cdot n^{1/4}$.
@@ -355,7 +365,7 @@ Tukaj se rešitev zdi očitna: pazljivo moramo izbrati ne premajhen $e$, da bo $
 
 \subsubsection{Napad na majhen prostor sporočil}
 
-Če je slika šifrirne funkcije pri izbranem javnem ključu premajhna, lahko napadalec kriptosistem očitno učinkovito napade že s surovo silo (\emph{brute force}), saj lahko preprosto izračuna vse možne šifrirane nize in jih primerja s prestreženimi. Na velikost prostora sporočil vpliva veliko parametrov, predvsem velikost praštevil $p$ in $q$, izbira $e$ in posledično izbira $d$. Potemtakem je očitno, da je ta napad preprosta kombinacija tehnik chosen-ciphertext napada, napada na majhen šifrirni eksponent in napada na majhen dešifrirni eksponent. \\
+Če je slika šifrirne funkcije pri izbranem javnem ključu premajhna, lahko napadalec kriptosistem očitno učinkovito napade že s surovo silo (\emph{brute force}), saj lahko preprosto izračuna vse možne šifrirane nize in jih primerja s prestreženimi. Na velikost prostora sporočil vpliva veliko parametrov, predvsem velikost praštevil $p$ in $q$, izbira $e$ in posledično izbira $d$. Potemtakem je očitno, da je ta napad preprosta kombinacija tehnik napada z izbranim šifropisom, napada na majhen šifrirni eksponent in napada na majhen dešifrirni eksponent. \\
 
 \begin{matematika}{Rešitev}
 Splošna rešitev je zopet naključno soljenje sporočila, predvsem pa pametna izbira ključa. Že zaradi problema faktorizacije števila $n$ na prafaktorja $p$ in $q$, morata biti praštevili zelo veliki - priporočen velikostni red je najmanj $2^{4096}$, večje organizacije pa uporabljajo tudi mnogo večja praštevila.
@@ -363,17 +373,25 @@ Splošna rešitev je zopet naključno soljenje sporočila, predvsem pa pametna i
 
 \subsubsection{Cikličen napad}
 
-Zadnji napad je poleg napada s surovo silo (pregled vseh možnosti) konceptualno najpreprostejši, pa vendar še najbolj zvit. Sledi preprostemu algoritmu:
+Zadnji napad je poleg napada s surovo silo (pregled vseh možnosti) konceptualno najpreprostejši, pa vendar še najbolj zvit. Sledi preprostemu algoritmu: \\
 
 \begin{matematika}{Algoritem}
-Naj bo $c$ prestreženo šifrirano sporočilo.
+Naj bo $c_0$ prestreženo šifrirano sporočilo.
 \begin{itemize}[label=\ding{227}]
-\item $c$ še enkrat šifriramo in dobimo novo šifro $c_0$. Korak ponavljamo na $c_0$, dokler ne velja $c_0 = c$, kjer je $c$ prvotno prestreženo sporočilo.
-\item Ko je $c_0 = c$, preprosto pogledamo korak nazaj, katero sporočilo smo šifrirali, da smo dobili nazaj $c$. To sporočilo zaradi enoličnosti algoritma mora biti izvorno sporočilo. \\
+\item $c_0$ še enkrat šifriramo in dobimo novo šifro $c_1$. Korak ponavljamo na $c_i$, dokler ne velja $c_i = c_0$, kjer je $c_0$ prvotno prestreženo sporočilo.
+\item Ko je $c_i = c_0$, preprosto pogledamo eno šifriranje nazaj, katero sporočilo smo šifrirali, da smo dobili nazaj $c_0$. To sporočilo zaradi enoličnosti algoritma mora biti izvorno sporočilo. \\
 \end{itemize}
 \end{matematika}
 
-Vredno je omeniti, da je ob pravilni izbiri ključev ta napad časovno ekvivalenten napadu s surovo silo. Njegova edina prednost je, da je popolnoma odporen na soljenje sporočila, saj je algoritem popolnoma neodvisen od ključev in sporočila samega, od tega je odvisno le njegovo trajanje.
+Vprašanje, ki si ga lahko zastavimo, je: ali je možno, da se nam algoritem na neki točki vrne na nek $c_i \neq c_0$? S tem bi seveda nehal delovati, saj bi v neskončnost krožil po istih nepravilnih vrednostih. Na napadalčevo srečo se to ne more zgoditi: \\
+
+\begin{matematika}{Komentar}
+Ko zaporedoma šifriramo prestreženo skrito sporočilo, je na $i$-tem koraku sporočilo tako: $c^{e^{i}}$. Radi bi, da obstaja tak $k$, da velja $c^{e^k} = c$.
+\newline
+Iz podatka gcd$(e, \varphi (n)) = 1$ sledi, da je $e \in \mathbb{Z}_{\varphi (n)}^{*}$, tj. element multiplikativne grupe obrnljivih elementov aditivne grupe $\mathbb{Z}_{\varphi (n)}$. Podgrupa $<e>$ te multiplikativne grupe, ki je generirana z elementom $e$, je torej ciklična in končna, vsebuje vse možne potence števila $e$, med drugim tudi inverz števila $e$, ki pa smo ga označili z $d$. Ko z $i$ iteriramo zaporedoma po vseh potencah števila $e$ torej zaradi končnosti grupe $<e>$ mora obstajati tak $k$, da $c^{e^k} = c^{e^0} = c$. \\
+\end{matematika}
+
+Vredno je omeniti, da je ob pravilni izbiri ključev ta napad časovno ekvivalenten napadu s surovo silo. Njegova edina prednost je, da je odporen na soljenje sporočila, saj je algoritem popolnoma neodvisen od ključev in sporočila samega, od tega je odvisno le njegovo trajanje.
 
 \newpage
 \section{Zaključek}
@@ -401,6 +419,14 @@ Four Estate Ltd, 2003
 Gupta P.C. 
 \textit{Cryptography and network security},
 PHI Learning Private Limited, Delhi, 2015
+
+\bibitem{faktorizacija}
+\textit{Integer factorization},
+dostopno na \url{https://en.wikipedia.org/wiki/Integer_factorization}
+
+\bibitem{wiener}
+\textit{Wiener's attack},
+dostopno na \url{https://en.wikipedia.org/wiki/Wiener\%27s_attack}
 
 \end{thebibliography}
 
